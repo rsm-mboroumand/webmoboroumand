@@ -1,0 +1,302 @@
+---
+title: "Who Will Win Roland Garros 2026?"
+subtitle: "A Data-Driven Clay Court Prediction"
+author: "Mohamad Boroumand"
+date: "April 2026"
+format:
+  revealjs:
+    theme: default
+    embed-resources: true
+    slide-number: false
+    transition: slide
+    background-transition: fade
+    width: 1280
+    height: 720
+    margin: 0.04
+    center: false
+    controls: true
+    progress: true
+---
+
+## {background-color="#1a0a00"}
+
+```{=html}
+<style>
+  :root {
+    --clay: #c8521a;
+    --clay-light: #e8845a;
+    --gold: #f0c040;
+    --green: #69f0ae;
+    --blue: #4fc3f7;
+    --red: #ff6b6b;
+    --bg: #1a0a00;
+    --card-bg: #ffffff0d;
+  }
+
+  .reveal { font-family: 'Segoe UI', Arial, sans-serif; color: #f0ece8; }
+  .reveal h2 {
+    color: var(--clay-light);
+    border-bottom: 2px solid #c8521a55;
+    padding-bottom: 8px;
+    margin-bottom: 14px;
+    font-size: 1.3em;
+    text-transform: none;
+    text-shadow: 0 0 20px #c8521a44;
+  }
+  .reveal h3 { color: var(--gold); font-size: 0.95em; text-transform: none; }
+
+  /* ── SLIDE 1 ── */
+  .rg-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #c8521a, #8b2500);
+    color: #fff8f0;
+    font-weight: 800;
+    font-size: 0.58em;
+    padding: 5px 18px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+  .rg-title { color: var(--clay-light); font-size: 2em; font-weight: 900; margin: 6px 0; line-height: 1.1; }
+  .rg-name  { color: var(--gold); font-size: 2em; font-weight: 900; margin: 0 0 6px; line-height: 1.1; }
+  .rg-sub   { color: #c8a898; font-size: 0.6em; }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 22px;
+  }
+  .stat-card {
+    background: var(--card-bg);
+    border: 1px solid #c8521a33;
+    border-radius: 10px;
+    padding: 14px 8px;
+    text-align: center;
+  }
+  .stat-card .num { display: block; font-size: 1.9em; font-weight: 800; color: var(--clay-light); }
+  .stat-card .lbl { display: block; font-size: 0.44em; color: #b8a898; margin-top: 4px; }
+
+  .quarto-badge {
+    position: absolute; bottom: 14px; left: 30px;
+    font-size: 0.33em; color: #664433;
+    background: #ffffff06; border: 1px solid #ffffff12;
+    padding: 3px 10px; border-radius: 10px;
+  }
+
+  /* ── SLIDE 2 ── */
+  .prob-section { margin-bottom: 10px; }
+
+  .h-bar-row {
+    display: flex; align-items: center;
+    gap: 10px; margin: 6px 0; font-size: 0.54em;
+  }
+  .h-bar-label { width: 170px; text-align: right; flex-shrink: 0; font-weight: 600; }
+  .h-bar-track {
+    flex: 1; background: #ffffff15;
+    border-radius: 4px; height: 24px; overflow: hidden;
+  }
+  .h-bar-fill {
+    height: 100%; border-radius: 4px;
+    display: flex; align-items: center;
+    padding-left: 10px; font-size: 0.9em;
+    font-weight: 700; color: #1a0a00;
+  }
+
+  .reasons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px; margin-top: 10px;
+  }
+  .reason-box {
+    background: #ffffff09;
+    border-left: 3px solid var(--clay);
+    border-radius: 0 8px 8px 0;
+    padding: 10px 14px;
+    font-size: 0.56em; line-height: 1.5;
+  }
+  .reason-box strong { color: var(--clay-light); display: block; margin-bottom: 3px; }
+
+  /* ── SLIDE 3 ── */
+  .podium {
+    display: flex; align-items: flex-end;
+    justify-content: center; gap: 18px; margin-top: 8px;
+  }
+  .podium-bar {
+    border-radius: 6px 6px 0 0;
+    text-align: center; padding: 10px 6px 6px;
+    font-size: 0.48em; min-width: 105px;
+  }
+  .podium-bar .flag { font-size: 2.2em; display: block; margin-bottom: 4px; }
+  .podium-bar .ctry { font-weight: 800; font-size: 1.1em; }
+  .podium-bar .prob { font-size: 0.88em; margin-top: 2px; opacity: 0.85; }
+
+  .p1 { background: linear-gradient(180deg,#f0c040,#a06800); color: #1a0a00; height: 155px; }
+  .p2 { background: linear-gradient(180deg,#9e9e9e,#444); color: #fff; height: 108px; }
+  .p3 { background: linear-gradient(180deg,#cd7f32,#6b3800); color: #fff; height: 76px; }
+  .pn { background: #2a1500; border: 1px solid #c8521a44; color: #c8a898; height: 58px; }
+
+  .risk-row { display: flex; gap: 12px; margin-top: 12px; }
+  .risk-item {
+    flex: 1; background: #ff6b6b0f;
+    border: 1px solid #ff6b6b44;
+    border-radius: 8px; padding: 10px 14px;
+    font-size: 0.54em; line-height: 1.5;
+  }
+  .risk-item strong { color: var(--red); display: block; margin-bottom: 3px; }
+
+  .dark-horse {
+    background: #4fc3f710;
+    border: 1px solid #4fc3f744;
+    border-radius: 8px; padding: 10px 16px;
+    font-size: 0.54em; margin-top: 12px; line-height: 1.6;
+  }
+  .dark-horse strong { color: var(--blue); }
+</style>
+
+<div class="rg-badge">🎾 ROLAND GARROS 2026 · PARIS · MAY 25 – JUNE 8</div>
+
+<div class="rg-title">Who Will Win?</div>
+<div class="rg-name">Carlos Alcaraz 🇪🇸</div>
+<div class="rg-sub">A data-driven clay court prediction — by Mohamad Boroumand</div>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <span class="num">128</span>
+    <span class="lbl">Players in<br/>main draw</span>
+  </div>
+  <div class="stat-card">
+    <span class="num">7</span>
+    <span class="lbl">Rounds to<br/>the title</span>
+  </div>
+  <div class="stat-card">
+    <span class="num">#2</span>
+    <span class="lbl">Alcaraz<br/>ATP ranking</span>
+  </div>
+  <div class="stat-card">
+    <span class="num">82%</span>
+    <span class="lbl">Alcaraz clay<br/>win rate 2025</span>
+  </div>
+</div>
+
+<div class="quarto-badge">📄 Created with Quarto · format: revealjs · embed-resources: true</div>
+```
+
+---
+
+## Why Alcaraz? The Evidence
+
+```{=html}
+<div class="prob-section">
+  <p style="font-weight:600; font-size:0.62em; margin-bottom:6px;">Estimated outright win probability — Roland Garros 2026</p>
+
+  <div class="h-bar-row">
+    <div class="h-bar-label">🇪🇸 Carlos Alcaraz</div>
+    <div class="h-bar-track">
+      <div class="h-bar-fill" style="width:85%; background: linear-gradient(90deg,#c8521a,#8b2500);">~22%</div>
+    </div>
+  </div>
+  <div class="h-bar-row">
+    <div class="h-bar-label">🇷🇸 Novak Djokovic</div>
+    <div class="h-bar-track">
+      <div class="h-bar-fill" style="width:62%; background: linear-gradient(90deg,#4fc3f7,#1565c0);">~16%</div>
+    </div>
+  </div>
+  <div class="h-bar-row">
+    <div class="h-bar-label">🇩🇪 Alexander Zverev</div>
+    <div class="h-bar-track">
+      <div class="h-bar-fill" style="width:50%; background: linear-gradient(90deg,#c0c0c0,#666);">~13%</div>
+    </div>
+  </div>
+  <div class="h-bar-row">
+    <div class="h-bar-label">🇮🇹 Jannik Sinner</div>
+    <div class="h-bar-track">
+      <div class="h-bar-fill" style="width:42%; background: linear-gradient(90deg,#69f0ae,#1b5e20);">~11%</div>
+    </div>
+  </div>
+  <p style="font-size:0.36em; color:#886655; margin-bottom:8px;">
+    Based on ATP surface stats, recent form, draw difficulty, and historical Roland Garros performance · April 2026
+  </p>
+</div>
+
+<div class="reasons">
+  <div class="reason-box">
+    <strong>🏆 Reigning Champion</strong>
+    Alcaraz won Roland Garros 2024, defeating Zverev in the final.
+    Defending champions at RG win the title again ~30% of the time — the highest repeat rate of any Slam.
+  </div>
+  <div class="reason-box">
+    <strong>🎯 Clay is His Best Surface</strong>
+    His heavy topspin forehand (avg. 3,200 RPM), slide movement, and
+    net approach are tailor-made for Parisian red clay conditions.
+  </div>
+  <div class="reason-box">
+    <strong>💪 Physical Peak at 23</strong>
+    At 23, Alcaraz enters 2026 at his athletic prime — combining Nadal-like
+    clay dominance with the serve power and variety of a modern all-court player.
+  </div>
+  <div class="reason-box">
+    <strong>📈 2025 Clay Season Form</strong>
+    Won Monte-Carlo and Madrid in 2025, reaching the RG semi-final.
+    His clay-court win rate (82%) leads all active top-10 players in 2025.
+  </div>
+</div>
+```
+
+---
+
+## Prediction & Risks
+
+```{=html}
+<div class="podium">
+  <div class="podium-bar p2">
+    <span class="flag">🇷🇸</span>
+    <div class="ctry">Djokovic</div>
+    <div class="prob">Finalist</div>
+  </div>
+  <div class="podium-bar p1">
+    <span class="flag">🇪🇸</span>
+    <div class="ctry">ALCARAZ</div>
+    <div class="prob">🏆 Champion</div>
+  </div>
+  <div class="podium-bar p3">
+    <span class="flag">🇩🇪</span>
+    <div class="ctry">Zverev</div>
+    <div class="prob">Semi-final</div>
+  </div>
+  <div class="podium-bar pn">
+    <span class="flag">🇮🇹</span>
+    <div class="ctry">Sinner</div>
+    <div class="prob">Quarter</div>
+  </div>
+</div>
+
+<h3 style="margin-top:14px;">⚠️ Risks to This Prediction</h3>
+
+<div class="risk-row">
+  <div class="risk-item">
+    <strong>Djokovic's Experience</strong>
+    3× RG champion and the greatest clay fighter in history.
+    If Djokovic is fully fit, no lead is safe in a five-set match.
+  </div>
+  <div class="risk-item">
+    <strong>Sinner's Rise</strong>
+    World No.1 Sinner won the Australian Open 2025 and is rapidly
+    improving on clay — a potential upset threat in the quarters.
+  </div>
+  <div class="risk-item">
+    <strong>Scheduling & Fatigue</strong>
+    The compressed clay swing (Monte-Carlo → Madrid → Rome → Paris)
+    could drain Alcaraz before the second week. Injury risk is real.
+  </div>
+</div>
+
+<div class="dark-horse">
+  🌟 <strong>Dark Horse:</strong> Lorenzo Musetti 🇮🇹 — the Italian has quietly built
+  a top-8 clay record in 2025 and could cause chaos in the bottom half of the draw.
+</div>
+
+<p style="text-align:center; margin-top:10px; font-size:0.42em; color:#886655;">
+  <em>Forecast based on ATP rankings, surface win rates, draw projections, and historical RG data · April 2026</em>
+</p>
+```
