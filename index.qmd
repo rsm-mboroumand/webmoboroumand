@@ -11,11 +11,12 @@ page-layout: full
            onerror="this.src='https://via.placeholder.com/160x160/1a237e/ffffff?text=MB'">
     </div>
     <div class="hero-text">
-      <h1 class="hero-name">Mo Boroumand</h1>
-      <p class="hero-tagline"><!-- Your tagline / title here, e.g. "Founder · Engineer · Builder" --></p>
+      <h1 class="hero-name">Mohamad Boroumand</h1>
+      <p class="hero-tagline">Product Manager · Platform & Integration · Data Pipelines & API Services · UCSD MSBA '26</p>
       <p class="hero-bio">
-        <!-- Short 2–3 sentence bio. You'll fill this in. -->
-        Welcome to my personal site. I build products, explore startup ideas, and write about things I care about.
+        Platform-focused product leader with 18+ years of experience building and scaling integration frameworks,
+        data pipelines, and API ecosystems. Founder of Mobosoft Inc. and co-founder of Didehbannet ISP.
+        Currently completing my MS in Business Analytics at UC San Diego.
       </p>
       <div class="hero-cta">
         <a href="about.qmd" class="btn btn-primary">About Me</a>
@@ -29,20 +30,20 @@ page-layout: full
   <div class="highlights-grid">
     <div class="highlight-card">
       <div class="card-icon">🚀</div>
-      <h3>Startups</h3>
-      <p>Ideas and ventures I've been building or exploring.</p>
-      <a href="startup.qmd">Learn more →</a>
+      <h3>Mobosoft Inc.</h3>
+      <p>Founder & CEO building cloud infrastructure, API integrations, and EV rental platforms.</p>
+      <a href="experience.qmd">Learn more →</a>
     </div>
     <div class="highlight-card">
-      <div class="card-icon">🛠️</div>
-      <h3>Products</h3>
-      <p>Things I've shipped and projects I'm proud of.</p>
-      <a href="products.qmd">Learn more →</a>
+      <div class="card-icon">📊</div>
+      <h3>UCSD MSBA</h3>
+      <p>Completing MS in Business Analytics — Data Analytics, Machine Learning, Python, SQL.</p>
+      <a href="resume.qmd">Learn more →</a>
     </div>
     <div class="highlight-card">
       <div class="card-icon">💼</div>
-      <h3>Experience</h3>
-      <p>My professional journey and what I've learned.</p>
+      <h3>18+ Years Experience</h3>
+      <p>Co-founded Didehbannet ISP, supported 50,000+ POS terminals, built CRM platforms at scale.</p>
       <a href="experience.qmd">Learn more →</a>
     </div>
   </div>

@@ -13,41 +13,41 @@ title: "About Me"
 
     <div class="about-text-col">
       <h2>Hi, I'm Mo 👋</h2>
+      <p>
+        I'm a platform-focused product leader with 18+ years of experience building and scaling integration
+        frameworks, data pipelines, API ecosystems, and shared services infrastructure. I thrive at the
+        intersection of deep technical understanding and strategic product thinking.
+      </p>
+      <p>
+        I co-founded Didehbannet ISP in Iran, where I built a proprietary CRM platform with multi-system
+        API integrations, supported 50,000+ POS terminal connections, and delivered high-availability services
+        at enterprise scale over 18 years. I'm now the Founder & CEO of Mobosoft Inc. in San Diego, building
+        cloud infrastructure and API-driven products.
+      </p>
+      <p>
+        I'm currently completing my MS in Business Analytics at UC San Diego – Rady School of Management
+        (Dec 2026), adding data science and machine learning depth to my platform engineering background.
+        I'm passionate about solving complex integration challenges and building products that scale.
+      </p>
 
-      <!-- ============================================================
-           FILL IN YOUR BIO BELOW
-           ============================================================ -->
-      <p>
-        [Your bio paragraph 1 — who you are, what you do, what drives you.]
-      </p>
-      <p>
-        [Your bio paragraph 2 — background, education, or key interests.]
-      </p>
-      <p>
-        [Your bio paragraph 3 — hobbies, personal side, or what you're currently working on.]
-      </p>
-
-      <h3>What I'm interested in</h3>
+      <h3>What I work with</h3>
       <ul>
-        <li>[Interest 1]</li>
-        <li>[Interest 2]</li>
-        <li>[Interest 3]</li>
-        <li>[Interest 4]</li>
+        <li>Platform & Integration: API Lifecycle Management, Integration Frameworks, Data Pipelines</li>
+        <li>Product Management: Roadmapping, Agile/Scrum, Cross-functional Leadership</li>
+        <li>Data & Analytics: Python, SQL, Machine Learning, GIS/Mapbox, Business Intelligence</li>
+        <li>Infrastructure: AWS/VPS, Cloud Architecture, Linux/Ubuntu, High-Availability Systems</li>
       </ul>
 
       <h3>Connect with me</h3>
       <div class="social-links">
-        <a href="https://github.com/moboroumand" class="social-btn github">
-          <i class="bi bi-github"></i> GitHub
-        </a>
-        <a href="https://linkedin.com/in/moboroumand" class="social-btn linkedin">
+        <a href="https://linkedin.com/in/mohamad-boroumand" class="social-btn linkedin">
           <i class="bi bi-linkedin"></i> LinkedIn
         </a>
-        <a href="https://twitter.com/moboroumand" class="social-btn twitter">
-          <i class="bi bi-twitter-x"></i> Twitter / X
-        </a>
         <a href="mailto:mohamad.boroumand@gmail.com" class="social-btn email">
-          <i class="bi bi-envelope-fill"></i> Email
+          <i class="bi bi-envelope-fill"></i> mohamad.boroumand@gmail.com
+        </a>
+        <a href="tel:858-947-2222" class="social-btn phone">
+          <i class="bi bi-telephone-fill"></i> 858-947-2222
         </a>
       </div>
     </div>

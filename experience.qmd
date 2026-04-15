@@ -4,68 +4,86 @@ title: "Experience"
 
 ```{=html}
 <div class="page-section">
-  <p class="page-intro">
-    A timeline of my professional journey — roles, companies, and what I built along the way.
-  </p>
 
-  <div class="timeline">
-
-    <!-- ============================================================
-         EXPERIENCE ENTRY — copy this block for each role
-         ============================================================ -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-header">
-          <div class="timeline-title-group">
-            <h3>[Job Title]</h3>
-            <span class="timeline-company">[Company Name]</span>
-            <span class="timeline-location"><i class="bi bi-geo-alt"></i> [City, Country or Remote]</span>
-          </div>
-          <span class="timeline-date">[Start Month Year] – [End Month Year or Present]</span>
-        </div>
-        <p class="timeline-type">[Full-time / Part-time / Contract / Internship]</p>
-        <ul class="timeline-bullets">
-          <li>[Key responsibility or achievement — use numbers where possible, e.g. "Grew user base by 40%"]</li>
-          <li>[Key responsibility or achievement 2]</li>
-          <li>[Key responsibility or achievement 3]</li>
-        </ul>
-        <div class="timeline-tags">
-          <span class="tag">[Skill/Tool 1]</span>
-          <span class="tag">[Skill/Tool 2]</span>
-          <span class="tag">[Skill/Tool 3]</span>
-        </div>
+  <!-- Mobosoft -->
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-title-block">
+        <h3 class="exp-role">Founder & CEO</h3>
+        <p class="exp-company">Mobosoft Inc. · San Diego, CA</p>
+      </div>
+      <span class="exp-date">Dec 2022 – Present</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Designed and launched cloud infrastructure services including VPS hosting, dedicated servers, and IPv4 resource management — building scalable, high-availability platform foundations supporting multiple service lines.</li>
+        <li>Led integration of third-party payment processing APIs and B2B partner systems, managing API lifecycle requirements, service-level expectations, and cross-partner data flows.</li>
+        <li>Developed a pay-per-mile EV rental platform from concept through market validation, owning the full product roadmap, technical requirements, and cross-functional execution.</li>
+        <li>Applied data analytics to monitor platform performance and drive continuous improvement in service reliability and operational efficiency.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Cloud Infrastructure</span>
+        <span class="tag">API Integration</span>
+        <span class="tag">Product Roadmap</span>
+        <span class="tag">AWS/VPS</span>
+        <span class="tag">Data Analytics</span>
       </div>
     </div>
-
-    <!-- ============================================================
-         EXPERIENCE ENTRY 2
-         ============================================================ -->
-    <div class="timeline-item">
-      <div class="timeline-dot"></div>
-      <div class="timeline-card">
-        <div class="timeline-header">
-          <div class="timeline-title-group">
-            <h3>[Job Title]</h3>
-            <span class="timeline-company">[Company Name]</span>
-            <span class="timeline-location"><i class="bi bi-geo-alt"></i> [City, Country or Remote]</span>
-          </div>
-          <span class="timeline-date">[Start Month Year] – [End Month Year]</span>
-        </div>
-        <p class="timeline-type">[Full-time / Part-time / Contract / Internship]</p>
-        <ul class="timeline-bullets">
-          <li>[Key responsibility or achievement 1]</li>
-          <li>[Key responsibility or achievement 2]</li>
-        </ul>
-        <div class="timeline-tags">
-          <span class="tag">[Skill/Tool 1]</span>
-          <span class="tag">[Skill/Tool 2]</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Add more timeline-item blocks as needed -->
-
   </div>
+
+  <!-- Didehbannet -->
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-title-block">
+        <h3 class="exp-role">Co-Founder & CEO</h3>
+        <p class="exp-company">Didehbannet ISP · Iran</p>
+      </div>
+      <span class="exp-date">Jul 2004 – Jul 2022 · 18 yrs</span>
+    </div>
+    <div class="exp-body">
+      <ul>
+        <li>Built a proprietary CRM platform from scratch — architected user authentication, automated billing workflows, and API integrations connecting to multiple third-party systems at enterprise scale.</li>
+        <li>Designed and maintained integration frameworks supporting 50,000+ POS terminal connections, ensuring high-availability data flows and real-time connectivity.</li>
+        <li>Delivered city-scale fiber optic infrastructure, defining platform architecture standards and phased rollout strategy for long-term reliability.</li>
+        <li>Deployed a full Wi-Fi platform across Bahonar University — supporting 20,000+ active users with secure, scalable network services and centralized authentication.</li>
+        <li>Led B2B partnership negotiations and partner-facing API integrations, translating complex technical requirements into clear product roadmaps.</li>
+        <li>Directed IT strategy, network security compliance, and 24/7 service reliability for a regional telecommunications platform.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">CRM Platform</span>
+        <span class="tag">50,000+ POS Terminals</span>
+        <span class="tag">Fiber Optic Infrastructure</span>
+        <span class="tag">API Lifecycle</span>
+        <span class="tag">High-Availability Systems</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Featured Project -->
+  <div class="exp-card">
+    <div class="exp-header">
+      <div class="exp-title-block">
+        <h3 class="exp-role">Campus Foot Traffic & Routing Analysis</h3>
+        <p class="exp-company">UCSD × OccuSpace Capstone Project</p>
+      </div>
+      <span class="exp-date">Jan 2026 – Jun 2026</span>
+    </div>
+    <div class="exp-body">
+      <p><em>Python · GIS · Mapbox · Spatial Analytics · Data Pipelines</em></p>
+      <ul>
+        <li>Built data pipelines and probabilistic zone-to-zone transition models from anonymized device-level movement data across UCSD campus.</li>
+        <li>Delivered descriptive, predictive, and prescriptive analytics outputs translating complex platform data into actionable insights for non-technical stakeholders.</li>
+        <li>Developed interactive GIS dashboards for UCSD Facilities and Campus Planning.</li>
+      </ul>
+      <div class="exp-tags">
+        <span class="tag">Python</span>
+        <span class="tag">GIS</span>
+        <span class="tag">Mapbox</span>
+        <span class="tag">Spatial Analytics</span>
+        <span class="tag">Data Pipelines</span>
+      </div>
+    </div>
+  </div>
+
 </div>
 ```

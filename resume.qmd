@@ -7,99 +7,142 @@ title: "Resume"
 
   <div class="resume-header-bar">
     <div>
-      <h2 class="resume-name">Mo Boroumand</h2>
+      <h2 class="resume-name">Mohamad Boroumand</h2>
+      <p class="resume-tagline">Product Manager — Platform & Integration | Data Pipelines & API Services | UCSD MSBA '26</p>
       <p class="resume-contact">
         <span><i class="bi bi-envelope"></i> mohamad.boroumand@gmail.com</span>
-        <span><i class="bi bi-github"></i> github.com/moboroumand</span>
-        <span><i class="bi bi-linkedin"></i> linkedin.com/in/moboroumand</span>
+        <span><i class="bi bi-telephone"></i> 858-947-2222</span>
+        <span><i class="bi bi-geo-alt"></i> San Diego, CA</span>
+        <span><i class="bi bi-linkedin"></i> linkedin.com/in/mohamad-boroumand</span>
       </p>
     </div>
-    <a href="assets/resume.pdf" class="btn btn-primary" download>
+    <a href="assets/Mohamad_Boroumand_PM.pdf" class="btn btn-primary" download>
       <i class="bi bi-download"></i> Download PDF
     </a>
   </div>
 
-  <!-- ============================================================
-       SUMMARY
-       ============================================================ -->
+  <!-- SUMMARY -->
   <div class="resume-section">
-    <h3 class="resume-section-title"><span>Summary</span></h3>
-    <p>[Write a 2–3 sentence professional summary here.]</p>
+    <h3 class="resume-section-title"><span>Professional Summary</span></h3>
+    <p>
+      Platform-focused product leader with 18+ years of experience building and scaling integration frameworks,
+      data pipelines, API ecosystems, and shared services infrastructure. Co-founded Didehbannet ISP, where I
+      built a proprietary CRM platform with multi-system API integrations, supported 50,000+ POS terminal
+      connections, and delivered high-availability services at enterprise scale. Now completing an MS in Business
+      Analytics at UC San Diego (Dec 2026), adding data science and analytics depth to a strong platform
+      engineering background.
+    </p>
   </div>
 
-  <!-- ============================================================
-       SKILLS
-       ============================================================ -->
+  <!-- SKILLS -->
   <div class="resume-section">
     <h3 class="resume-section-title"><span>Skills</span></h3>
     <div class="skills-grid">
       <div class="skill-group">
-        <strong>Technical</strong>
-        <p>[e.g. Python, SQL, React, etc.]</p>
+        <strong>Platform & Integration</strong>
+        <p>API Lifecycle Management, Integration Frameworks, Interoperability Standards (HL7/FHIR), Shared Services Architecture, Partner-Facing APIs, Data Pipelines, Reporting Engines</p>
       </div>
       <div class="skill-group">
-        <strong>Tools & Platforms</strong>
-        <p>[e.g. AWS, Docker, Notion, etc.]</p>
+        <strong>Product Management</strong>
+        <p>Platform Roadmap, Technical Requirements & User Stories, Cross-functional Collaboration, Agile/Scrum, Stakeholder Management, Service-Level Requirements, Continuous Improvement</p>
       </div>
       <div class="skill-group">
-        <strong>Soft Skills</strong>
-        <p>[e.g. Leadership, Communication, etc.]</p>
+        <strong>Data & Analytics</strong>
+        <p>Python, SQL, Data Analytics, Machine Learning, Business Intelligence, GIS/Mapbox, Spatial Analytics, Data Visualization</p>
+      </div>
+      <div class="skill-group">
+        <strong>Infrastructure & Compliance</strong>
+        <p>Cloud Infrastructure (AWS/VPS), Network Architecture, Linux/Ubuntu, Cisco Networking, High-Availability Systems, Security & Compliance (HIPAA/GDPR)</p>
       </div>
     </div>
   </div>
 
-  <!-- ============================================================
-       EDUCATION
-       ============================================================ -->
+  <!-- EDUCATION -->
   <div class="resume-section">
     <h3 class="resume-section-title"><span>Education</span></h3>
 
     <div class="resume-entry">
       <div class="entry-header">
         <div>
-          <strong>[Degree Name]</strong> — [University Name]
+          <strong>Master of Science, Business Analytics (MSBA)</strong> — UC San Diego, Rady School of Management
         </div>
-        <span class="entry-date">[Start Year] – [End Year]</span>
+        <span class="entry-date">Jul 2025 – Dec 2026</span>
       </div>
-      <p>[Optional: GPA, honours, relevant coursework, thesis.]</p>
+      <p>Data Analytics, Machine Learning, Python, SQL, Business Intelligence, Cloud Computing</p>
     </div>
 
-    <!-- Duplicate block above for additional degrees -->
-
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div>
+          <strong>DBA, Business Administration & Management</strong> — Industrial Management Institute
+        </div>
+        <span class="entry-date">Feb 2019 – Jul 2022</span>
+      </div>
+    </div>
   </div>
 
-  <!-- ============================================================
-       WORK EXPERIENCE (brief; full detail on /experience page)
-       ============================================================ -->
+  <!-- EXPERIENCE -->
   <div class="resume-section">
     <h3 class="resume-section-title"><span>Work Experience</span></h3>
 
     <div class="resume-entry">
       <div class="entry-header">
         <div>
-          <strong>[Job Title]</strong> · <em>[Company Name]</em>
+          <strong>Founder & CEO</strong> · <em>Mobosoft Inc.</em>
         </div>
-        <span class="entry-date">[Start] – [End]</span>
+        <span class="entry-date">Dec 2022 – Present · San Diego, CA</span>
       </div>
       <ul>
-        <li>[Achievement / responsibility 1]</li>
-        <li>[Achievement / responsibility 2]</li>
-        <li>[Achievement / responsibility 3]</li>
+        <li>Designed and launched cloud infrastructure services including VPS hosting, dedicated servers, and IPv4 resource management — building scalable, high-availability platform foundations.</li>
+        <li>Led integration of third-party payment processing APIs and B2B partner systems, managing API lifecycle requirements, service-level expectations, and cross-partner data flows.</li>
+        <li>Developed a pay-per-mile EV rental platform from concept through market validation, owning product roadmap, technical requirements, and cross-functional execution.</li>
+        <li>Applied data analytics to monitor platform performance and drive continuous improvement in service reliability and operational efficiency.</li>
       </ul>
     </div>
 
-    <!-- Duplicate block above for each role -->
-
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div>
+          <strong>Co-Founder & CEO</strong> · <em>Didehbannet ISP</em>
+        </div>
+        <span class="entry-date">Jul 2004 – Jul 2022 · 18 yrs · Iran</span>
+      </div>
+      <ul>
+        <li>Built a proprietary CRM platform from scratch — architected user authentication, automated billing workflows, and API integrations connecting to multiple third-party systems.</li>
+        <li>Designed and maintained integration frameworks supporting 50,000+ POS terminal connections, ensuring high-availability data flows and real-time connectivity at enterprise scale.</li>
+        <li>Delivered city-scale fiber optic infrastructure, defining platform architecture standards and phased rollout strategy for long-term reliability.</li>
+        <li>Deployed a full Wi-Fi platform across Bahonar University, supporting 20,000+ active users with secure, scalable network services and centralized authentication.</li>
+        <li>Led B2B partnership negotiations and partner-facing API integrations, translating complex technical requirements into clear product roadmaps.</li>
+      </ul>
+    </div>
   </div>
 
-  <!-- ============================================================
-       CERTIFICATIONS / AWARDS (optional)
-       ============================================================ -->
+  <!-- FEATURED PROJECT -->
   <div class="resume-section">
-    <h3 class="resume-section-title"><span>Certifications & Awards</span></h3>
+    <h3 class="resume-section-title"><span>Featured Project</span></h3>
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div>
+          <strong>Campus Foot Traffic & Routing Analysis</strong> · <em>UCSD × OccuSpace Capstone</em>
+        </div>
+        <span class="entry-date">Jan 2026 – Jun 2026</span>
+      </div>
+      <p><em>Python · GIS · Mapbox · Spatial Analytics · Data Pipelines</em></p>
+      <ul>
+        <li>Analyzed anonymized device-level movement data across UCSD campus — building data pipelines, probabilistic zone-to-zone transition models, and reporting visualizations for institutional stakeholders.</li>
+        <li>Delivered descriptive, predictive, and prescriptive analytics outputs using real OccuSpace production data, translating complex platform data into actionable insights for non-technical stakeholders.</li>
+        <li>Developed interactive GIS dashboards for UCSD Facilities and Campus Planning.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Certifications</span></h3>
     <ul>
-      <li>[Certification / Award 1] — [Issuer, Year]</li>
-      <li>[Certification / Award 2] — [Issuer, Year]</li>
+      <li><strong>Introduction to Programming Using Python</strong> — Sololearn (Jul 2023)</li>
+      <li><strong>Data Analytics</strong> — Masterschool (May 2023) · Credential ID: 74262</li>
+      <li><strong>Microsoft Excel</strong> — LinkedIn Skill Assessment ✓ Verified</li>
     </ul>
   </div>
 
