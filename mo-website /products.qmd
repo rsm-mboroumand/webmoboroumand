@@ -1,0 +1,112 @@
+---
+title: "Products"
+---
+
+```{=html}
+<div class="page-section">
+  <p class="page-intro">
+    Products and platforms I've built, launched, and scaled — from enterprise ISP infrastructure
+    to cloud services and data analytics tools.
+  </p>
+
+  <div class="products-grid">
+
+    <!-- Mobosoft Cloud -->
+    <div class="product-card">
+      <div class="product-image-wrap">
+        <img src="assets/product-mobosoft.png" alt="Mobosoft Cloud"
+             onerror="this.src='https://via.placeholder.com/400x220/1a237e/ffffff?text=Mobosoft+Cloud'">
+      </div>
+      <div class="product-body">
+        <div class="product-status live">Live</div>
+        <h3 class="product-title">Mobosoft Cloud Infrastructure</h3>
+        <p class="product-desc">
+          Enterprise-grade cloud services including VPS hosting, dedicated servers, and IPv4
+          resource management. Built scalable, high-availability platform foundations supporting
+          multiple B2B service lines with third-party API integrations and SLA-driven reliability.
+        </p>
+        <div class="product-tags">
+          <span class="tag">VPS Hosting</span>
+          <span class="tag">IPv4 Management</span>
+          <span class="tag">API Integration</span>
+          <span class="tag">AWS</span>
+          <span class="tag">Linux/Ubuntu</span>
+        </div>
+        <div class="product-links">
+          <a href="https://mobosoft.com" class="btn btn-sm btn-primary"><i class="bi bi-box-arrow-up-right"></i> Visit</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EV Rental Platform -->
+    <div class="product-card">
+      <div class="product-image-wrap">
+        <img src="assets/product-ev.png" alt="EV Rental Platform"
+             onerror="this.src='https://via.placeholder.com/400x220/4a148c/ffffff?text=EV+Rental+Platform'">
+      </div>
+      <div class="product-body">
+        <div class="product-status wip">In Progress</div>
+        <h3 class="product-title">Pay-Per-Mile EV Rental Platform</h3>
+        <p class="product-desc">
+          A usage-based electric vehicle rental platform developed from concept through market
+          validation. Owned full product roadmap, technical requirements, and cross-functional
+          execution across engineering and commercial teams.
+        </p>
+        <div class="product-tags">
+          <span class="tag">EV / Mobility</span>
+          <span class="tag">Product Strategy</span>
+          <span class="tag">Market Validation</span>
+          <span class="tag">API Design</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Didehbannet CRM -->
+    <div class="product-card">
+      <div class="product-image-wrap">
+        <img src="assets/product-crm.png" alt="Proprietary CRM Platform"
+             onerror="this.src='https://via.placeholder.com/400x220/283593/ffffff?text=CRM+Platform'">
+      </div>
+      <div class="product-body">
+        <div class="product-status archived">Archived</div>
+        <h3 class="product-title">Proprietary CRM Platform (Didehbannet)</h3>
+        <p class="product-desc">
+          Built from scratch — architected user authentication, automated billing workflows, and
+          API integrations connecting to multiple third-party systems. Supported 50,000+ POS
+          terminal connections and 20,000+ active university users at enterprise scale.
+        </p>
+        <div class="product-tags">
+          <span class="tag">CRM</span>
+          <span class="tag">API Integrations</span>
+          <span class="tag">Billing Automation</span>
+          <span class="tag">50,000+ POS Terminals</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- UCSD GIS Dashboard -->
+    <div class="product-card">
+      <div class="product-image-wrap">
+        <img src="assets/product-gis.png" alt="UCSD GIS Dashboard"
+             onerror="this.src='https://via.placeholder.com/400x220/6a1b9a/ffffff?text=GIS+Dashboard'">
+      </div>
+      <div class="product-body">
+        <div class="product-status live">Live</div>
+        <h3 class="product-title">Campus Foot Traffic GIS Dashboard</h3>
+        <p class="product-desc">
+          Interactive GIS dashboards for UCSD Facilities and Campus Planning, built on real
+          OccuSpace sensor data. Features probabilistic zone-to-zone transition models,
+          spatial analytics, and reporting visualizations for institutional decision-makers.
+        </p>
+        <div class="product-tags">
+          <span class="tag">Python</span>
+          <span class="tag">GIS / Mapbox</span>
+          <span class="tag">Spatial Analytics</span>
+          <span class="tag">Data Pipelines</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```

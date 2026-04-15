@@ -1,0 +1,140 @@
+---
+title: "Resume"
+---
+
+```{=html}
+<div class="page-section resume-page">
+
+  <div class="resume-header-bar">
+    <div>
+      <h2 class="resume-name">Mohamad Boroumand</h2>
+      <p class="resume-contact">
+        <span><i class="bi bi-envelope"></i> mohamad.boroumand@gmail.com</span>
+        <span><i class="bi bi-telephone"></i> 858-947-2222</span>
+        <span><i class="bi bi-geo-alt"></i> San Diego, CA</span>
+        <span><i class="bi bi-linkedin"></i> linkedin.com/in/mohamad-boroumand</span>
+      </p>
+    </div>
+    <a href="assets/Mohamad_Boroumand_PM.pdf" class="btn btn-primary" download>
+      <i class="bi bi-download"></i> Download PDF
+    </a>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Summary</span></h3>
+    <p>
+      Platform-focused product leader with 18+ years of experience building and scaling integration
+      frameworks, data pipelines, API ecosystems, and shared services infrastructure. Co-founded
+      Didehbannet ISP, where I built a proprietary CRM platform with multi-system API integrations,
+      supported 50,000+ POS terminal connections, and delivered high-availability services at
+      enterprise scale. Now completing an MS in Business Analytics at UC San Diego (Dec 2026),
+      adding data science and analytics depth to a strong platform engineering background.
+    </p>
+  </div>
+
+  <!-- SKILLS -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Skills</span></h3>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <strong>Platform & Integration</strong>
+        <p>API Lifecycle Management, Integration Frameworks, Interoperability Standards (HL7/FHIR awareness), Shared Services Architecture, Partner-Facing APIs, Data Pipelines, Reporting Engines</p>
+      </div>
+      <div class="skill-group">
+        <strong>Product Management</strong>
+        <p>Platform Roadmap, Technical Requirements & User Stories, Cross-functional Collaboration, Agile/Scrum, Stakeholder Management, Service-Level Requirements, Continuous Improvement</p>
+      </div>
+      <div class="skill-group">
+        <strong>Data & Analytics</strong>
+        <p>Python, SQL, Data Analytics, Machine Learning, Business Intelligence, GIS/Mapbox, Spatial Analytics, Data Visualization</p>
+      </div>
+      <div class="skill-group">
+        <strong>Infrastructure & Compliance</strong>
+        <p>Cloud Infrastructure (AWS/VPS), Network Architecture, Linux/Ubuntu, Cisco Networking, High-Availability Systems, Security & Compliance (HIPAA/GDPR principles)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Experience</span></h3>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div><strong>Founder & CEO</strong> · <em>Mobosoft Inc.</em></div>
+        <span class="entry-date">Dec 2022 – Present · San Diego, CA</span>
+      </div>
+      <ul>
+        <li>Designed and launched cloud infrastructure services including VPS hosting, dedicated servers, and IPv4 resource management — building scalable, high-availability platform foundations supporting multiple service lines</li>
+        <li>Led integration of third-party payment processing APIs and B2B partner systems, managing API lifecycle requirements, service-level expectations, and cross-partner data flows</li>
+        <li>Developed a pay-per-mile EV rental platform from concept through market validation, owning product roadmap, technical requirements, and cross-functional execution</li>
+        <li>Applied data analytics to monitor platform performance and drive continuous improvement in service reliability and operational efficiency</li>
+      </ul>
+    </div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div><strong>Co-Founder & CEO</strong> · <em>Didehbannet ISP</em></div>
+        <span class="entry-date">Jul 2004 – Jul 2022 · 18 yrs · Iran</span>
+      </div>
+      <ul>
+        <li>Built a proprietary CRM platform from scratch — architected user authentication, automated billing workflows, and API integrations connecting to multiple third-party systems</li>
+        <li>Designed and maintained integration frameworks supporting 50,000+ POS terminal connections, ensuring high-availability data flows and real-time connectivity at enterprise scale</li>
+        <li>Delivered city-scale fiber optic infrastructure, defining platform architecture standards, service-level requirements, and phased rollout strategy</li>
+        <li>Deployed a full Wi-Fi platform across Bahonar University, supporting 20,000+ active users with secure, scalable network services and centralized authentication</li>
+        <li>Led B2B partnership negotiations and partner-facing API integrations with enterprise clients, translating complex technical requirements into clear product roadmaps</li>
+        <li>Directed IT strategy, network security compliance, and 24/7 service reliability for a regional telecommunications platform</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FEATURED PROJECT -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Featured Project</span></h3>
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div><strong>Campus Foot Traffic & Routing Analysis</strong> · <em>UCSD × OccuSpace Capstone</em></div>
+        <span class="entry-date">Jan 2026 – Jun 2026</span>
+      </div>
+      <p style="font-size:0.82rem;color:var(--text-muted);margin-bottom:0.5rem;">Python · GIS · Mapbox · Spatial Analytics · Data Pipelines</p>
+      <ul>
+        <li>Analyzed anonymized device-level movement data across UCSD campus — building data pipelines, probabilistic zone-to-zone transition models, and reporting visualizations</li>
+        <li>Delivered descriptive, predictive, and prescriptive analytics outputs using real OccuSpace production data, translating complex platform data into actionable insights for non-technical stakeholders</li>
+        <li>Developed interactive GIS dashboards for UCSD Facilities and Campus Planning</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Education</span></h3>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div><strong>MS, Business Analytics (MSBA)</strong> · <em>UC San Diego – Rady School of Management</em></div>
+        <span class="entry-date">Jul 2025 – Dec 2026</span>
+      </div>
+      <p>Data Analytics, Machine Learning, Python, SQL, Business Intelligence, Cloud Computing</p>
+    </div>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div><strong>DBA, Business Administration & Management</strong> · <em>Industrial Management Institute</em></div>
+        <span class="entry-date">Feb 2019 – Jul 2022</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CERTIFICATIONS -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Certifications</span></h3>
+    <ul>
+      <li><strong>Introduction to Programming Using Python</strong> — Sololearn (Jul 2023)</li>
+      <li><strong>Data Analytics</strong> — Masterschool (May 2023) · Credential ID: 74262</li>
+      <li><strong>Microsoft Excel</strong> — LinkedIn Skill Assessment ✓ Verified</li>
+    </ul>
+  </div>
+
+</div>
+```

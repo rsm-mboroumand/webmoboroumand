@@ -1,0 +1,106 @@
+---
+title: "Startup Ideas"
+---
+
+```{=html}
+<div class="page-section">
+  <p class="page-intro">
+    Ventures I've founded or am actively exploring — combining platform thinking, data, and
+    real-world market needs.
+  </p>
+
+  <div class="startup-list">
+
+    <!-- Mobosoft -->
+    <div class="startup-card">
+      <div class="startup-card-left">
+        <div class="startup-emoji">☁️</div>
+        <div class="startup-stage launched">Launched</div>
+      </div>
+      <div class="startup-card-right">
+        <h3 class="startup-title">Mobosoft Inc.</h3>
+        <p class="startup-tagline">Cloud infrastructure and platform services for modern businesses</p>
+        <div class="startup-section">
+          <strong>Problem</strong>
+          <p>SMBs and startups need enterprise-grade cloud infrastructure — VPS hosting, dedicated servers, IPv4 management — without the complexity and cost of hyperscalers.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Solution</strong>
+          <p>Scalable, high-availability cloud platform with B2B API integrations, third-party payment processing, and SLA-driven reliability — all managed and operated from San Diego.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Traction</strong>
+          <p>Live and serving customers across multiple service lines since Dec 2022.</p>
+        </div>
+        <div class="startup-tags">
+          <span class="tag">Cloud / SaaS</span>
+          <span class="tag">Infrastructure</span>
+          <span class="tag">B2B</span>
+          <span class="tag">API Services</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EV Rental -->
+    <div class="startup-card">
+      <div class="startup-card-left">
+        <div class="startup-emoji">⚡</div>
+        <div class="startup-stage validating">Validating</div>
+      </div>
+      <div class="startup-card-right">
+        <h3 class="startup-title">Pay-Per-Mile EV Rental Platform</h3>
+        <p class="startup-tagline">Usage-based electric vehicle access — pay only for the miles you drive</p>
+        <div class="startup-section">
+          <strong>Problem</strong>
+          <p>Traditional car rentals charge flat daily rates regardless of actual usage. EV adoption is accelerating but flexible, usage-based access models are still rare and fragmented.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Solution</strong>
+          <p>A platform that enables pay-per-mile EV rentals — combining telematics, payment APIs, and a seamless booking experience to make sustainable mobility accessible and cost-aligned.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Why now?</strong>
+          <p>EV fleet costs are falling rapidly, urban sustainability mandates are tightening, and consumer appetite for flexible mobility is at an all-time high.</p>
+        </div>
+        <div class="startup-tags">
+          <span class="tag">EV / Mobility</span>
+          <span class="tag">Usage-Based Pricing</span>
+          <span class="tag">Telematics</span>
+          <span class="tag">Marketplace</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Didehbannet -->
+    <div class="startup-card">
+      <div class="startup-card-left">
+        <div class="startup-emoji">🌐</div>
+        <div class="startup-stage paused">Exited</div>
+      </div>
+      <div class="startup-card-right">
+        <h3 class="startup-title">Didehbannet ISP</h3>
+        <p class="startup-tagline">Regional internet service provider — fiber, Wi-Fi, and enterprise connectivity</p>
+        <div class="startup-section">
+          <strong>Problem</strong>
+          <p>Underserved communities and institutions lacked reliable, affordable, high-speed internet and the enterprise-grade support infrastructure needed to scale connectivity.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Solution</strong>
+          <p>Built a full-stack ISP from scratch — city-scale fiber optic infrastructure, a proprietary CRM with API integrations, 50,000+ POS terminal connections, and campus-wide Wi-Fi for 20,000+ users at Bahonar University.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Outcome</strong>
+          <p>Operated for 18 years (2004–2022), growing to enterprise scale and building deep platform and integration expertise that continues to inform my product work today.</p>
+        </div>
+        <div class="startup-tags">
+          <span class="tag">Telecom / ISP</span>
+          <span class="tag">Fiber Infrastructure</span>
+          <span class="tag">CRM Platform</span>
+          <span class="tag">Enterprise B2B</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+```

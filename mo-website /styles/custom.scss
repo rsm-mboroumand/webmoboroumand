@@ -1,0 +1,33 @@
+/*-- scss:defaults --*/
+
+/* ── Color Palette ─────────────────────────────────────── */
+$navy:        #0d1b4b;   /* deep navy */
+$navy-mid:    #1a237e;   /* mid navy (Bootstrap primary override) */
+$navy-light:  #283593;   /* hover states */
+$purple:      #6a1b9a;   /* deep purple */
+$purple-mid:  #7b1fa2;   /* mid purple */
+$purple-light:#9c27b0;   /* lighter purple */
+$accent:      #ce93d8;   /* soft lavender accent */
+$white:       #ffffff;
+$off-white:   #f8f9ff;
+$text-dark:   #1c1c2e;
+$text-muted:  #5c5f7a;
+$border:      #e0e4f5;
+
+/* ── Quarto / Bootstrap Overrides ──────────────────────── */
+$primary:            $navy-mid;
+$secondary:          $purple;
+$navbar-bg:          $navy;
+$navbar-fg:          $white;
+$navbar-hl:          $accent;
+$link-color:         $purple;
+$link-hover-color:   $purple-light;
+$body-bg:            $off-white;
+$body-color:         $text-dark;
+$font-family-base:   'Inter', 'Segoe UI', system-ui, sans-serif;
+$font-size-base:     1rem;
+$border-radius:      0.75rem;
+$card-border-radius: 1rem;
+
+/*-- scss:rules --*/
+/* Custom rules are in styles/custom.css — nothing extra needed here */

@@ -1,0 +1,59 @@
+---
+title: "About Me"
+---
+
+```{=html}
+<div class="page-section">
+  <div class="about-grid">
+
+    <div class="about-photo-col">
+      <img src="assets/profile.jpg" alt="Mo Boroumand" class="about-photo"
+           onerror="this.src='https://via.placeholder.com/260x260/1a237e/ffffff?text=MB'">
+    </div>
+
+    <div class="about-text-col">
+      <h2>Hi, I'm Mo 👋</h2>
+
+      <p>
+        I'm a platform-focused product leader with 18+ years of experience building and scaling
+        integration frameworks, data pipelines, API ecosystems, and shared services infrastructure.
+        I co-founded Didehbannet ISP, where I built a proprietary CRM platform with multi-system
+        API integrations, supported 50,000+ POS terminal connections, and delivered high-availability
+        services at enterprise scale.
+      </p>
+      <p>
+        I'm currently completing a Master of Science in Business Analytics (MSBA) at UC San Diego's
+        Rady School of Management (Dec 2026), adding data science and analytics depth to my platform
+        engineering background. I also run <strong>Mobosoft Inc.</strong>, a San Diego–based company
+        delivering cloud infrastructure services and platform solutions.
+      </p>
+      <p>
+        I'm passionate about turning complex technical challenges into clear product roadmaps — and
+        I thrive at the intersection of engineering, data, and business strategy.
+      </p>
+
+      <h3>What I work with</h3>
+      <ul>
+        <li>🔗 Platform & API Integration — API lifecycle, shared services, interoperability</li>
+        <li>📊 Data & Analytics — Python, SQL, GIS/Mapbox, Machine Learning, BI</li>
+        <li>🧭 Product Management — Roadmaps, Agile/Scrum, cross-functional leadership</li>
+        <li>☁️ Cloud Infrastructure — AWS/VPS, Linux/Ubuntu, high-availability systems</li>
+      </ul>
+
+      <h3>Connect with me</h3>
+      <div class="social-links">
+        <a href="https://github.com/moboroumand" class="social-btn github">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a href="https://linkedin.com/in/mohamad-boroumand" class="social-btn linkedin">
+          <i class="bi bi-linkedin"></i> LinkedIn
+        </a>
+        <a href="mailto:mohamad.boroumand@gmail.com" class="social-btn email">
+          <i class="bi bi-envelope-fill"></i> Email
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+```

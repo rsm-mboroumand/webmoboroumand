@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Mo Boroumand"
+  favicon: "assets/favicon.ico"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: about.qmd
+        text: About
+      - href: resume.qmd
+        text: Resume
+      - href: experience.qmd
+        text: Experience
+      - href: products.qmd
+        text: Products
+      - href: startup.qmd
+        text: Startup Ideas
+    right:
+      - icon: github
+        href: https://github.com/moboroumand
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://linkedin.com/in/mohamad-boroumand
+        aria-label: LinkedIn
+      - icon: envelope-fill
+        href: mailto:mohamad.boroumand@gmail.com
+        aria-label: Email
+  page-footer:
+    left: "© 2026 Mohamad Boroumand · San Diego, CA"
+    right:
+      - icon: github
+        href: https://github.com/moboroumand
+      - icon: linkedin
+        href: https://linkedin.com/in/mohamad-boroumand
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles/custom.scss
+    css: styles/custom.css
+    toc: false
+    smooth-scroll: true
