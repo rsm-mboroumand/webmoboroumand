@@ -1,0 +1,75 @@
+---
+title: "Startup Ideas"
+---
+
+```{=html}
+<div class="page-section">
+  <p class="page-intro">
+    Ideas I'm exploring, validating, or excited about. Some may become real companies — some are just thinking out loud.
+  </p>
+
+  <div class="startup-list">
+
+    <!-- ============================================================
+         STARTUP IDEA CARD — copy this block for each idea
+         ============================================================ -->
+    <div class="startup-card">
+      <div class="startup-card-left">
+        <div class="startup-emoji">[Emoji]</div>
+        <div class="startup-stage exploring">Exploring</div>
+        <!-- Stage options: exploring | validating | building | launched | paused -->
+      </div>
+      <div class="startup-card-right">
+        <h3 class="startup-title">[Idea / Company Name]</h3>
+        <p class="startup-tagline">[One-liner: "X for Y" or "We help Z do W"]</p>
+        <div class="startup-section">
+          <strong>Problem</strong>
+          <p>[What problem does this solve? Who feels this pain?]</p>
+        </div>
+        <div class="startup-section">
+          <strong>Solution</strong>
+          <p>[How do you solve it? What's the core insight?]</p>
+        </div>
+        <div class="startup-section">
+          <strong>Why now?</strong>
+          <p>[What has changed in the market or technology that makes this the right time?]</p>
+        </div>
+        <div class="startup-tags">
+          <span class="tag">[Industry]</span>
+          <span class="tag">[Technology]</span>
+          <span class="tag">[Market]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================================
+         STARTUP IDEA 2
+         ============================================================ -->
+    <div class="startup-card">
+      <div class="startup-card-left">
+        <div class="startup-emoji">[Emoji]</div>
+        <div class="startup-stage validating">Validating</div>
+      </div>
+      <div class="startup-card-right">
+        <h3 class="startup-title">[Idea / Company Name]</h3>
+        <p class="startup-tagline">[One-liner]</p>
+        <div class="startup-section">
+          <strong>Problem</strong>
+          <p>[Problem description]</p>
+        </div>
+        <div class="startup-section">
+          <strong>Solution</strong>
+          <p>[Solution description]</p>
+        </div>
+        <div class="startup-tags">
+          <span class="tag">[Industry]</span>
+          <span class="tag">[Technology]</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add more startup-card blocks as needed -->
+
+  </div>
+</div>
+```

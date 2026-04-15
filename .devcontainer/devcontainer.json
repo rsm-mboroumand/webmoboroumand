@@ -4,7 +4,7 @@
     "docker-compose-k8s.yml"
   ],
   "service": "rsm-msba",
-  "workspaceFolder": "/home/jovyan/Desktop/webmboroumnad/mo-website ",
+  "workspaceFolder": "/home/jovyan/Desktop/webmboroumnad",
   "remoteUser": "jovyan",
   "overrideCommand": false,
   "shutdownAction": "none",

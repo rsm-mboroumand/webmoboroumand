@@ -1,0 +1,57 @@
+---
+title: "About Me"
+---
+
+```{=html}
+<div class="page-section">
+  <div class="about-grid">
+
+    <div class="about-photo-col">
+      <img src="assets/profile.jpg" alt="Mo Boroumand" class="about-photo"
+           onerror="this.src='https://via.placeholder.com/260x260/1a237e/ffffff?text=MB'">
+    </div>
+
+    <div class="about-text-col">
+      <h2>Hi, I'm Mo 👋</h2>
+
+      <!-- ============================================================
+           FILL IN YOUR BIO BELOW
+           ============================================================ -->
+      <p>
+        [Your bio paragraph 1 — who you are, what you do, what drives you.]
+      </p>
+      <p>
+        [Your bio paragraph 2 — background, education, or key interests.]
+      </p>
+      <p>
+        [Your bio paragraph 3 — hobbies, personal side, or what you're currently working on.]
+      </p>
+
+      <h3>What I'm interested in</h3>
+      <ul>
+        <li>[Interest 1]</li>
+        <li>[Interest 2]</li>
+        <li>[Interest 3]</li>
+        <li>[Interest 4]</li>
+      </ul>
+
+      <h3>Connect with me</h3>
+      <div class="social-links">
+        <a href="https://github.com/moboroumand" class="social-btn github">
+          <i class="bi bi-github"></i> GitHub
+        </a>
+        <a href="https://linkedin.com/in/moboroumand" class="social-btn linkedin">
+          <i class="bi bi-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://twitter.com/moboroumand" class="social-btn twitter">
+          <i class="bi bi-twitter-x"></i> Twitter / X
+        </a>
+        <a href="mailto:mohamad.boroumand@gmail.com" class="social-btn email">
+          <i class="bi bi-envelope-fill"></i> Email
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+```

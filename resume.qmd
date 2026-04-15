@@ -1,0 +1,107 @@
+---
+title: "Resume"
+---
+
+```{=html}
+<div class="page-section resume-page">
+
+  <div class="resume-header-bar">
+    <div>
+      <h2 class="resume-name">Mo Boroumand</h2>
+      <p class="resume-contact">
+        <span><i class="bi bi-envelope"></i> mohamad.boroumand@gmail.com</span>
+        <span><i class="bi bi-github"></i> github.com/moboroumand</span>
+        <span><i class="bi bi-linkedin"></i> linkedin.com/in/moboroumand</span>
+      </p>
+    </div>
+    <a href="assets/resume.pdf" class="btn btn-primary" download>
+      <i class="bi bi-download"></i> Download PDF
+    </a>
+  </div>
+
+  <!-- ============================================================
+       SUMMARY
+       ============================================================ -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Summary</span></h3>
+    <p>[Write a 2–3 sentence professional summary here.]</p>
+  </div>
+
+  <!-- ============================================================
+       SKILLS
+       ============================================================ -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Skills</span></h3>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <strong>Technical</strong>
+        <p>[e.g. Python, SQL, React, etc.]</p>
+      </div>
+      <div class="skill-group">
+        <strong>Tools & Platforms</strong>
+        <p>[e.g. AWS, Docker, Notion, etc.]</p>
+      </div>
+      <div class="skill-group">
+        <strong>Soft Skills</strong>
+        <p>[e.g. Leadership, Communication, etc.]</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       EDUCATION
+       ============================================================ -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Education</span></h3>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div>
+          <strong>[Degree Name]</strong> — [University Name]
+        </div>
+        <span class="entry-date">[Start Year] – [End Year]</span>
+      </div>
+      <p>[Optional: GPA, honours, relevant coursework, thesis.]</p>
+    </div>
+
+    <!-- Duplicate block above for additional degrees -->
+
+  </div>
+
+  <!-- ============================================================
+       WORK EXPERIENCE (brief; full detail on /experience page)
+       ============================================================ -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Work Experience</span></h3>
+
+    <div class="resume-entry">
+      <div class="entry-header">
+        <div>
+          <strong>[Job Title]</strong> · <em>[Company Name]</em>
+        </div>
+        <span class="entry-date">[Start] – [End]</span>
+      </div>
+      <ul>
+        <li>[Achievement / responsibility 1]</li>
+        <li>[Achievement / responsibility 2]</li>
+        <li>[Achievement / responsibility 3]</li>
+      </ul>
+    </div>
+
+    <!-- Duplicate block above for each role -->
+
+  </div>
+
+  <!-- ============================================================
+       CERTIFICATIONS / AWARDS (optional)
+       ============================================================ -->
+  <div class="resume-section">
+    <h3 class="resume-section-title"><span>Certifications & Awards</span></h3>
+    <ul>
+      <li>[Certification / Award 1] — [Issuer, Year]</li>
+      <li>[Certification / Award 2] — [Issuer, Year]</li>
+    </ul>
+  </div>
+
+</div>
+```

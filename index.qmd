@@ -12,11 +12,10 @@ page-layout: full
     </div>
     <div class="hero-text">
       <h1 class="hero-name">Mo Boroumand</h1>
-      <p class="hero-tagline">Product Manager · Platform & Integration · UCSD MSBA '26</p>
+      <p class="hero-tagline"><!-- Your tagline / title here, e.g. "Founder · Engineer · Builder" --></p>
       <p class="hero-bio">
-        Platform-focused product leader with 18+ years of experience building and scaling
-        integration frameworks, data pipelines, API ecosystems, and shared services infrastructure.
-        Based in San Diego, CA.
+        <!-- Short 2–3 sentence bio. You'll fill this in. -->
+        Welcome to my personal site. I build products, explore startup ideas, and write about things I care about.
       </p>
       <div class="hero-cta">
         <a href="about.qmd" class="btn btn-primary">About Me</a>
@@ -30,20 +29,20 @@ page-layout: full
   <div class="highlights-grid">
     <div class="highlight-card">
       <div class="card-icon">🚀</div>
-      <h3>Startup Ideas</h3>
-      <p>Ideas and ventures I've been building or exploring — from EV platforms to cloud services.</p>
+      <h3>Startups</h3>
+      <p>Ideas and ventures I've been building or exploring.</p>
       <a href="startup.qmd">Learn more →</a>
     </div>
     <div class="highlight-card">
       <div class="card-icon">🛠️</div>
       <h3>Products</h3>
-      <p>Things I've shipped — cloud infrastructure, CRM platforms, and data pipelines.</p>
+      <p>Things I've shipped and projects I'm proud of.</p>
       <a href="products.qmd">Learn more →</a>
     </div>
     <div class="highlight-card">
       <div class="card-icon">💼</div>
       <h3>Experience</h3>
-      <p>18+ years of building and leading — from a regional ISP to a San Diego tech company.</p>
+      <p>My professional journey and what I've learned.</p>
       <a href="experience.qmd">Learn more →</a>
     </div>
   </div>

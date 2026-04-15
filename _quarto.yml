@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _site
+  output-dir: docs
 
 website:
   title: "Mo Boroumand"
@@ -24,18 +24,18 @@ website:
         href: https://github.com/moboroumand
         aria-label: GitHub
       - icon: linkedin
-        href: https://linkedin.com/in/mohamad-boroumand
+        href: https://linkedin.com/in/moboroumand
         aria-label: LinkedIn
-      - icon: envelope-fill
-        href: mailto:mohamad.boroumand@gmail.com
-        aria-label: Email
+      - icon: twitter-x
+        href: https://twitter.com/moboroumand
+        aria-label: Twitter / X
   page-footer:
-    left: "© 2026 Mohamad Boroumand · San Diego, CA"
+    left: "© 2026 Mo Boroumand"
     right:
       - icon: github
         href: https://github.com/moboroumand
       - icon: linkedin
-        href: https://linkedin.com/in/mohamad-boroumand
+        href: https://linkedin.com/in/moboroumand
 
 format:
   html:
