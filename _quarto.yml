@@ -19,6 +19,8 @@ website:
         text: Products
       - href: startup.qmd
         text: Startup Ideas
+      - href: posts/index.qmd
+        text: Blog
     right:
       - icon: github
         href: https://github.com/moboroumand
