@@ -52,14 +52,15 @@ warnings.filterwarnings('ignore')
 
 import glob, os
 
-# Auto-detect the .dta file in the current directory
-dta_files = glob.glob("*.dta")
-if not dta_files:
+# The main replication file from openICPSR project 113224
+DATA_FILE = "AERtables1-5.dta"
+
+if not os.path.exists(DATA_FILE):
     raise FileNotFoundError(
-        "No .dta file found. Download the data from openICPSR project 113224 "
-        "and place it in the same directory as this .qmd file."
+        f"'{DATA_FILE}' not found. Download it from:\n"
+        "  https://www.openicpsr.org/openicpsr/project/113224/version/V1/view\n"
+        "and place it in posts/causal_academic/ then re-run quarto render."
     )
-DATA_FILE = dta_files[0]
 print(f"Loading: {DATA_FILE}")
 
 df = pd.read_stata(DATA_FILE)
