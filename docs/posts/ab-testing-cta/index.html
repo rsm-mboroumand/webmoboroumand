@@ -313,7 +313,7 @@ window.Quarto = {
 <p>We assume:</p>
 <p><span class="math display">\[\pi_A = 0.22, \quad \pi_B = 0.18, \quad \theta = \pi_A - \pi_B = 0.04\]</span></p>
 <p>So CTA A has a genuine four-percentage-point advantage. We simulate 1,000 visitor outcomes for each group (2,000 total).</p>
-<div id="c5b47afc" class="cell" data-execution_count="2">
+<div id="a44665c1" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
@@ -334,56 +334,56 @@ window.Quarto = {
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>pi_B_hat  <span class="op">=</span> B.mean()</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>theta_hat <span class="op">=</span> pi_A_hat <span class="op">-</span> pi_B_hat</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="35ec341e" class="cell" data-execution_count="3">
+<div id="17b0879d" class="cell" data-execution_count="3">
 <div class="cell-output cell-output-display">
 <style type="text/css">
-#T_2f2ff th {
+#T_6b9d5 th {
   background-color: #2a7abf;
   color: white;
   font-weight: bold;
   padding: 8px 14px;
 }
-#T_2f2ff td {
+#T_6b9d5 td {
   padding: 7px 14px;
 }
-#T_2f2ff tr:nth-child(even) {
+#T_6b9d5 tr:nth-child(even) {
   background-color: #eef4fb;
 }
-#T_2f2ff  {
+#T_6b9d5  {
   border-collapse: collapse;
   font-size: 0.93em;
 }
 </style>
 
-<div id="T_2f2ff" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<div id="T_6b9d5" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_2f2ff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_6b9d5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;1: Simulated Data Summary
 </figcaption>
-<div aria-describedby="T_2f2ff-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="T_2f2ff" class="caption-top table table-sm table-striped small">
+<div aria-describedby="T_6b9d5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_6b9d5" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_2f2ff_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Group</th>
-<th id="T_2f2ff_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">True Value</th>
-<th id="T_2f2ff_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Observed in Simulation</th>
+<th id="T_6b9d5_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Group</th>
+<th id="T_6b9d5_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">True Value</th>
+<th id="T_6b9d5_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Observed in Simulation</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_2f2ff_row0_col0" class="data row0 col0">CTA A</td>
-<td id="T_2f2ff_row0_col1" class="data row0 col1">π_A = 0.22</td>
-<td id="T_2f2ff_row0_col2" class="data row0 col2">0.2160</td>
+<td id="T_6b9d5_row0_col0" class="data row0 col0">CTA A</td>
+<td id="T_6b9d5_row0_col1" class="data row0 col1">π_A = 0.22</td>
+<td id="T_6b9d5_row0_col2" class="data row0 col2">0.2160</td>
 </tr>
 <tr class="even">
-<td id="T_2f2ff_row1_col0" class="data row1 col0">CTA B</td>
-<td id="T_2f2ff_row1_col1" class="data row1 col1">π_B = 0.18</td>
-<td id="T_2f2ff_row1_col2" class="data row1 col2">0.1780</td>
+<td id="T_6b9d5_row1_col0" class="data row1 col0">CTA B</td>
+<td id="T_6b9d5_row1_col1" class="data row1 col1">π_B = 0.18</td>
+<td id="T_6b9d5_row1_col2" class="data row1 col2">0.1780</td>
 </tr>
 <tr class="odd">
-<td id="T_2f2ff_row2_col0" class="data row2 col0">Difference (θ̂)</td>
-<td id="T_2f2ff_row2_col1" class="data row2 col1">θ = 0.04000000000000001</td>
-<td id="T_2f2ff_row2_col2" class="data row2 col2">0.0380</td>
+<td id="T_6b9d5_row2_col0" class="data row2 col0">Difference (θ̂)</td>
+<td id="T_6b9d5_row2_col1" class="data row2 col1">θ = 0.04000000000000001</td>
+<td id="T_6b9d5_row2_col2" class="data row2 col2">0.0380</td>
 </tr>
 </tbody>
 </table>
@@ -399,7 +399,7 @@ Table&nbsp;1: Simulated Data Summary
 <p>How do we know that <span class="math inline">\(\hat\theta = \bar{X}_A - \bar{X}_B\)</span> is a sensible estimator of <span class="math inline">\(\theta\)</span>? The mathematical guarantee comes from the <strong>Law of Large Numbers (LLN)</strong>: as the number of observations grows, the sample mean converges to the population mean. Since <span class="math inline">\(\hat\pi_A \to \pi_A\)</span> and <span class="math inline">\(\hat\pi_B \to \pi_B\)</span>, it follows that <span class="math inline">\(\hat\theta \to \theta\)</span>.</p>
 <p>The LLN is the foundational reason why running a <em>larger</em> experiment gives you a <em>more reliable</em> answer. But how fast does convergence happen? The plot below makes it concrete.</p>
 <p>We compute the <strong>element-wise differences</strong> between CTA A and CTA B draws and track the <strong>running (cumulative) mean</strong> as we add one observation at a time.</p>
-<div id="4974d82d" class="cell" data-execution_count="4">
+<div id="2eefd31a" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Element-wise differences between paired draws</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>diffs <span class="op">=</span> A <span class="op">-</span> B   <span class="co"># length-1000 vector</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -456,7 +456,7 @@ Figure&nbsp;1: The running mean starts noisy but settles toward the true θ = 0.
 <li>Repeat 1,000 times.</li>
 <li>The standard deviation of those 1,000 bootstrapped estimates is the <strong>bootstrapped standard error</strong>.</li>
 </ol>
-<div id="162fcef4" class="cell" data-execution_count="6">
+<div id="d44a9b8b" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>B_reps <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>boot_thetas <span class="op">=</span> np.array([</span>
@@ -480,54 +480,54 @@ Figure&nbsp;1: The running mean starts noisy but settles toward the true θ = 0.
 <span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ci_lo_anal <span class="op">=</span> theta_hat <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> se_analytical</span>
 <span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ci_hi_anal <span class="op">=</span> theta_hat <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> se_analytical</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="5362deee" class="cell" data-execution_count="7">
+<div id="4fc71c69" class="cell" data-execution_count="7">
 <div class="cell-output cell-output-display">
 <style type="text/css">
-#T_08e2f th {
+#T_9c236 th {
   background-color: #2a7abf;
   color: white;
   font-weight: bold;
   padding: 8px 14px;
 }
-#T_08e2f td {
+#T_9c236 td {
   padding: 7px 14px;
 }
-#T_08e2f tr:nth-child(even) {
+#T_9c236 tr:nth-child(even) {
   background-color: #eef4fb;
 }
-#T_08e2f  {
+#T_9c236  {
   border-collapse: collapse;
   font-size: 0.93em;
 }
 </style>
 
-<div id="T_08e2f" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<div id="T_9c236" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_08e2f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_9c236-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;2: Standard Error Comparison: Bootstrap vs. Analytical
 </figcaption>
-<div aria-describedby="T_08e2f-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="T_08e2f" class="caption-top table table-sm table-striped small">
+<div aria-describedby="T_9c236-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_9c236" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_08e2f_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Method</th>
-<th id="T_08e2f_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Standard Error</th>
-<th id="T_08e2f_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">95% CI Lower</th>
-<th id="T_08e2f_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">95% CI Upper</th>
+<th id="T_9c236_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Method</th>
+<th id="T_9c236_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Standard Error</th>
+<th id="T_9c236_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">95% CI Lower</th>
+<th id="T_9c236_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">95% CI Upper</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_08e2f_row0_col0" class="data row0 col0">Bootstrap</td>
-<td id="T_08e2f_row0_col1" class="data row0 col1">0.01765</td>
-<td id="T_08e2f_row0_col2" class="data row0 col2">0.0034</td>
-<td id="T_08e2f_row0_col3" class="data row0 col3">0.0726</td>
+<td id="T_9c236_row0_col0" class="data row0 col0">Bootstrap</td>
+<td id="T_9c236_row0_col1" class="data row0 col1">0.01765</td>
+<td id="T_9c236_row0_col2" class="data row0 col2">0.0034</td>
+<td id="T_9c236_row0_col3" class="data row0 col3">0.0726</td>
 </tr>
 <tr class="even">
-<td id="T_08e2f_row1_col0" class="data row1 col0">Analytical formula</td>
-<td id="T_08e2f_row1_col1" class="data row1 col1">0.01777</td>
-<td id="T_08e2f_row1_col2" class="data row1 col2">0.0032</td>
-<td id="T_08e2f_row1_col3" class="data row1 col3">0.0728</td>
+<td id="T_9c236_row1_col0" class="data row1 col0">Analytical formula</td>
+<td id="T_9c236_row1_col1" class="data row1 col1">0.01777</td>
+<td id="T_9c236_row1_col2" class="data row1 col2">0.0032</td>
+<td id="T_9c236_row1_col3" class="data row1 col3">0.0728</td>
 </tr>
 </tbody>
 </table>
@@ -572,64 +572,64 @@ Figure&nbsp;2: As sample size grows, the sampling distribution of θ̂ becomes s
 <blockquote class="blockquote">
 <p><strong>Why “t-test” if we’re using the Normal?</strong> In the classical t-test, the data themselves are assumed Normal and the variance must be estimated — the resulting ratio then follows an exact t-distribution. Here, our data are Bernoulli (binary), so there is no exact t-distribution result. The CLT gives us approximate Normality, and what we are doing is technically a <strong>z-test</strong>. In practice, for large samples the t-distribution converges to the standard Normal, so the distinction rarely matters numerically — but it is important to understand conceptually why.</p>
 </blockquote>
-<div id="6e5f3523" class="cell" data-execution_count="9">
+<div id="5aeade11" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>z_stat  <span class="op">=</span> theta_hat <span class="op">/</span> se_analytical</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>p_value <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> stats.norm.cdf(<span class="bu">abs</span>(z_stat)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="d935372c" class="cell" data-execution_count="10">
+<div id="ae9deafe" class="cell" data-execution_count="10">
 <div class="cell-output cell-output-display">
 <style type="text/css">
-#T_eacb2 th {
+#T_b0f4e th {
   background-color: #2a7abf;
   color: white;
   font-weight: bold;
   padding: 8px 14px;
 }
-#T_eacb2 td {
+#T_b0f4e td {
   padding: 7px 14px;
 }
-#T_eacb2 tr:nth-child(even) {
+#T_b0f4e tr:nth-child(even) {
   background-color: #eef4fb;
 }
-#T_eacb2  {
+#T_b0f4e  {
   border-collapse: collapse;
   font-size: 0.93em;
 }
 </style>
 
-<div id="T_eacb2" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<div id="T_b0f4e" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_eacb2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_b0f4e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;3: Two-Sample Z-Test Results
 </figcaption>
-<div aria-describedby="T_eacb2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="T_eacb2" class="caption-top table table-sm table-striped small">
+<div aria-describedby="T_b0f4e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_b0f4e" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_eacb2_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
-<th id="T_eacb2_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Value</th>
+<th id="T_b0f4e_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Quantity</th>
+<th id="T_b0f4e_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_eacb2_row0_col0" class="data row0 col0">Estimated difference (θ̂)</td>
-<td id="T_eacb2_row0_col1" class="data row0 col1">0.0380</td>
+<td id="T_b0f4e_row0_col0" class="data row0 col0">Estimated difference (θ̂)</td>
+<td id="T_b0f4e_row0_col1" class="data row0 col1">0.0380</td>
 </tr>
 <tr class="even">
-<td id="T_eacb2_row1_col0" class="data row1 col0">Standard error SE(θ̂)</td>
-<td id="T_eacb2_row1_col1" class="data row1 col1">0.0178</td>
+<td id="T_b0f4e_row1_col0" class="data row1 col0">Standard error SE(θ̂)</td>
+<td id="T_b0f4e_row1_col1" class="data row1 col1">0.0178</td>
 </tr>
 <tr class="odd">
-<td id="T_eacb2_row2_col0" class="data row2 col0">z-statistic</td>
-<td id="T_eacb2_row2_col1" class="data row2 col1">2.1388</td>
+<td id="T_b0f4e_row2_col0" class="data row2 col0">z-statistic</td>
+<td id="T_b0f4e_row2_col1" class="data row2 col1">2.1388</td>
 </tr>
 <tr class="even">
-<td id="T_eacb2_row3_col0" class="data row3 col0">p-value</td>
-<td id="T_eacb2_row3_col1" class="data row3 col1">0.0325</td>
+<td id="T_b0f4e_row3_col0" class="data row3 col0">p-value</td>
+<td id="T_b0f4e_row3_col1" class="data row3 col1">0.0325</td>
 </tr>
 <tr class="odd">
-<td id="T_eacb2_row4_col0" class="data row4 col0">Significant at α = 0.05?</td>
-<td id="T_eacb2_row4_col1" class="data row4 col1">Yes</td>
+<td id="T_b0f4e_row4_col0" class="data row4 col0">Significant at α = 0.05?</td>
+<td id="T_b0f4e_row4_col1" class="data row4 col1">Yes</td>
 </tr>
 </tbody>
 </table>
@@ -656,64 +656,64 @@ Table&nbsp;3: Two-Sample Z-Test Results
 <li><span class="math inline">\(\hat\beta_0 + \hat\beta_1\)</span> is the expected <span class="math inline">\(Y_i\)</span> when <span class="math inline">\(D_i = 1\)</span> (CTA A) — i.e., <span class="math inline">\(\hat\beta_0 + \hat\beta_1 = \hat\pi_A\)</span>.</li>
 <li>Therefore <span class="math inline">\(\hat\beta_1 = \hat\pi_A - \hat\pi_B = \hat\theta\)</span> — numerically identical to our earlier estimator.</li>
 </ul>
-<div id="7d413702" class="cell" data-execution_count="11">
+<div id="8fa2314e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> np.concatenate([A, B])</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>D <span class="op">=</span> np.concatenate([np.ones(n), np.zeros(n)])   <span class="co"># 1 = CTA A, 0 = CTA B</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> sm.add_constant(D)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>ols_model <span class="op">=</span> sm.OLS(Y, X).fit()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="941b85d9" class="cell" data-execution_count="12">
+<div id="045e9a3f" class="cell" data-execution_count="12">
 <div class="cell-output cell-output-display">
 <style type="text/css">
-#T_6d9ed th {
+#T_f3f82 th {
   background-color: #2a7abf;
   color: white;
   font-weight: bold;
   padding: 8px 14px;
 }
-#T_6d9ed td {
+#T_f3f82 td {
   padding: 7px 14px;
 }
-#T_6d9ed tr:nth-child(even) {
+#T_f3f82 tr:nth-child(even) {
   background-color: #eef4fb;
 }
-#T_6d9ed  {
+#T_f3f82  {
   border-collapse: collapse;
   font-size: 0.93em;
 }
 </style>
 
-<div id="T_6d9ed" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<div id="T_f3f82" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_6d9ed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_f3f82-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;4: OLS Regression Coefficients
 </figcaption>
-<div aria-describedby="T_6d9ed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="T_6d9ed" class="caption-top table table-sm table-striped small">
+<div aria-describedby="T_f3f82-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_f3f82" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_6d9ed_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Term</th>
-<th id="T_6d9ed_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Estimate</th>
-<th id="T_6d9ed_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Std. Error</th>
-<th id="T_6d9ed_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">t-statistic</th>
-<th id="T_6d9ed_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">p-value</th>
+<th id="T_f3f82_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Term</th>
+<th id="T_f3f82_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Estimate</th>
+<th id="T_f3f82_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Std. Error</th>
+<th id="T_f3f82_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">t-statistic</th>
+<th id="T_f3f82_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">p-value</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_6d9ed_row0_col0" class="data row0 col0">Intercept (β₀)</td>
-<td id="T_6d9ed_row0_col1" class="data row0 col1">0.1780</td>
-<td id="T_6d9ed_row0_col2" class="data row0 col2">0.0126</td>
-<td id="T_6d9ed_row0_col3" class="data row0 col3">14.1615</td>
-<td id="T_6d9ed_row0_col4" class="data row0 col4">0.0000</td>
+<td id="T_f3f82_row0_col0" class="data row0 col0">Intercept (β₀)</td>
+<td id="T_f3f82_row0_col1" class="data row0 col1">0.1780</td>
+<td id="T_f3f82_row0_col2" class="data row0 col2">0.0126</td>
+<td id="T_f3f82_row0_col3" class="data row0 col3">14.1615</td>
+<td id="T_f3f82_row0_col4" class="data row0 col4">0.0000</td>
 </tr>
 <tr class="even">
-<td id="T_6d9ed_row1_col0" class="data row1 col0">CTA A Indicator (β₁)</td>
-<td id="T_6d9ed_row1_col1" class="data row1 col1">0.0380</td>
-<td id="T_6d9ed_row1_col2" class="data row1 col2">0.0178</td>
-<td id="T_6d9ed_row1_col3" class="data row1 col3">2.1377</td>
-<td id="T_6d9ed_row1_col4" class="data row1 col4">0.0327</td>
+<td id="T_f3f82_row1_col0" class="data row1 col0">CTA A Indicator (β₁)</td>
+<td id="T_f3f82_row1_col1" class="data row1 col1">0.0380</td>
+<td id="T_f3f82_row1_col2" class="data row1 col2">0.0178</td>
+<td id="T_f3f82_row1_col3" class="data row1 col3">2.1377</td>
+<td id="T_f3f82_row1_col4" class="data row1 col4">0.0327</td>
 </tr>
 </tbody>
 </table>
@@ -732,7 +732,7 @@ Table&nbsp;4: OLS Regression Coefficients
 <p>Suppose your boss wants to check in after every 100 visitors per group — at <span class="math inline">\(n = 100, 200, \ldots, 1000\)</span> — and declare a winner as soon as any single test comes back significant at <span class="math inline">\(\alpha = 0.05\)</span>. This practice is called <strong>peeking</strong>, and it quietly destroys the statistical properties of the test.</p>
 <p>Here is why. A single test at <span class="math inline">\(\alpha = 0.05\)</span> has a 5% chance of a <strong>false positive</strong> — rejecting <span class="math inline">\(H_0\)</span> when it is actually true. But each peek at accumulating data creates another independent opportunity to get unlucky. The overall probability of at least one false positive across all 10 peeks is much higher than 5%, even if the two CTAs are genuinely identical.</p>
 <p>We can measure exactly how much higher with a simulation. We set up a world where <strong>the null is true</strong> (<span class="math inline">\(\pi_A = \pi_B = 0.20\)</span>, no real difference), run 10,000 simulated experiments, and record in what fraction of those experiments peeking produces at least one spurious significant result.</p>
-<div id="89dd0f85" class="cell" data-execution_count="13">
+<div id="77d585ef" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">123</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>pi_null       <span class="op">=</span> <span class="fl">0.20</span></span>
@@ -767,51 +767,51 @@ Table&nbsp;4: OLS Regression Coefficients
 <span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a>fpr <span class="op">=</span> false_positives <span class="op">/</span> n_experiments</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="841b9166" class="cell" data-execution_count="14">
+<div id="cb5c5930" class="cell" data-execution_count="14">
 <div class="cell-output cell-output-display">
 <style type="text/css">
-#T_43408 th {
+#T_32d70 th {
   background-color: #c0392b;
   color: white;
   font-weight: bold;
   padding: 8px 14px;
 }
-#T_43408 td {
+#T_32d70 td {
   padding: 7px 14px;
 }
-#T_43408 tr:nth-child(even) {
+#T_32d70 tr:nth-child(even) {
   background-color: #eef4fb;
 }
-#T_43408  {
+#T_32d70  {
   border-collapse: collapse;
   font-size: 0.93em;
 }
 </style>
 
-<div id="T_43408" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
+<div id="T_32d70" class="quarto-float quarto-figure quarto-figure-center anchored" data-quarto-postprocess="true">
 <figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_43408-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="T_32d70-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;5: False Positive Rate: Single Test vs. Sequential Peeking
 </figcaption>
-<div aria-describedby="T_43408-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table id="T_43408" class="caption-top table table-sm table-striped small">
+<div aria-describedby="T_32d70-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table id="T_32d70" class="caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_43408_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Approach</th>
-<th id="T_43408_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">False Positive Rate</th>
-<th id="T_43408_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Inflation vs. Nominal</th>
+<th id="T_32d70_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Approach</th>
+<th id="T_32d70_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">False Positive Rate</th>
+<th id="T_32d70_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Inflation vs. Nominal</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_43408_row0_col0" class="data row0 col0">Single pre-planned test (correct practice)</td>
-<td id="T_43408_row0_col1" class="data row0 col1">~5.0%</td>
-<td id="T_43408_row0_col2" class="data row0 col2">1.0×</td>
+<td id="T_32d70_row0_col0" class="data row0 col0">Single pre-planned test (correct practice)</td>
+<td id="T_32d70_row0_col1" class="data row0 col1">~5.0%</td>
+<td id="T_32d70_row0_col2" class="data row0 col2">1.0×</td>
 </tr>
 <tr class="even">
-<td id="T_43408_row1_col0" class="data row1 col0">Peek after every 100 visitors (10 peeks)</td>
-<td id="T_43408_row1_col1" class="data row1 col1">~19.9%</td>
-<td id="T_43408_row1_col2" class="data row1 col2">4.0×</td>
+<td id="T_32d70_row1_col0" class="data row1 col0">Peek after every 100 visitors (10 peeks)</td>
+<td id="T_32d70_row1_col1" class="data row1 col1">~19.9%</td>
+<td id="T_32d70_row1_col2" class="data row1 col2">4.0×</td>
 </tr>
 </tbody>
 </table>

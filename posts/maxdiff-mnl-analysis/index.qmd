@@ -1,0 +1,750 @@
+---
+title: "MaxDiff Analysis of MSBA Class Preferences"
+subtitle: "Counts, MLE, and Bayesian estimation of the MNL model"
+author: "Mohamad Boroumand"
+date: "2026-05-27"
+description: "A complete Best-Worst Scaling (MaxDiff) analysis of UCSD MSBA students' course preferences. Compares three estimation methods: a counts analysis, MNL via maximum likelihood with optim(), and a hand-coded Metropolis-Hastings MCMC sampler for Bayesian inference."
+categories: [maximum likelihood, bayesian, MCMC, multinomial logit, survey analysis, R]
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-title: "Contents"
+    theme: flatly
+    code-fold: true
+    code-tools: true
+    highlight-style: github
+execute:
+  warning: false
+  message: false
+  cache: true
+---
+
+```{r setup}
+#| include: false
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+set.seed(42)
+```
+
+## Introduction
+
+MaxDiff — short for "Maximum Difference Scaling," also called *Best-Worst Scaling* — is a survey methodology for measuring how strongly people prefer one item over another. On each screen, the respondent sees a small subset of items (here, four) and selects the *most preferred* and *least preferred* item from that subset. They repeat this across many different screens, each showing a different combination of items.
+
+Why MaxDiff and not a simple 1–10 rating scale? Humans are genuinely good at relative judgments — picking a winner and a loser from a small set — but notoriously unreliable at assigning consistent numeric scores. Rating scales suffer from scale-use bias: some people use only the top two points, others use the full range, and these tendencies swamp real differences in preference. MaxDiff forces real differentiation between items on every screen and avoids this problem entirely.
+
+In this assignment, the 10 items are the 10 core MSBA classes at UCSD Rady. The goal is to estimate students' relative preference for each class using three methods of increasing sophistication:
+
+1. A simple **counts analysis** — the percentage of times each class was picked best minus the percentage of times it was picked worst.
+2. The **multinomial logit (MNL)** model fit by **maximum likelihood estimation** — a proper probabilistic model of the choice process.
+3. The same MNL model fit by **Bayesian methods** via the Metropolis-Hastings MCMC algorithm — which yields a full posterior distribution over the preference parameters.
+
+We expect all three methods to agree on the broad ranking (the best-loved and most-dreaded classes should come out the same no matter how we look), but they will differ in how they quantify the *strength* of preference and how they communicate uncertainty. MLE gives us standard errors; Bayesian gives us full credible intervals on anything we want to compute.
+
+
+## The Data
+
+```{r load-data}
+# Read the main survey data
+# readr::read_csv handles the UTF-8 BOM automatically and is tidyverse-native
+df <- read_csv(
+  "maxdiff_design_and_choices.csv",
+  show_col_types = FALSE
+)
+
+# Read the item labels (also has BOM)
+labels_raw <- read_csv(
+  "maxdiff_item_labels.csv",
+  show_col_types = FALSE
+)
+
+# Clean up the labels — keep only the first two columns and drop any NA rows
+labels <- labels_raw[, 1:2]
+colnames(labels) <- c("Item", "Label")
+labels <- labels %>% filter(!is.na(Item))
+
+# Create short abbreviations for plotting
+labels <- labels %>%
+  mutate(Short = case_when(
+    Item == 1  ~ "AI Math/Prog",
+    Item == 2  ~ "SQL",
+    Item == 3  ~ "Mktg/Fin/Ops",
+    Item == 4  ~ "Large Data",
+    Item == 5  ~ "Biz Analytics",
+    Item == 6  ~ "Analytics Consult",
+    Item == 7  ~ "Customer Analytics",
+    Item == 8  ~ "Capstone",
+    Item == 9  ~ "Mktg Analytics",
+    Item == 10 ~ "Biz Intel Systems",
+    TRUE       ~ as.character(Item)
+  ))
+
+# The survey design includes two types of tasks:
+#   - Tasks 1-8: standard 4-item best-worst tasks (the main MaxDiff tasks)
+#   - Tasks 9-15: 2-item anchor tasks comparing a class against item 11
+#     (item 11 does not appear in the labels and serves as an anchor)
+# We filter to only the 4-item tasks for this analysis.
+
+df_main <- df %>%
+  filter(Item <= 10) %>%               # remove item 11 (anchor)
+  group_by(`Record ID`, Task) %>%
+  filter(n() == 4) %>%                 # keep only tasks with exactly 4 shown items
+  ungroup()
+
+# Basic descriptives
+N  <- n_distinct(df_main$`Record ID`)   # number of respondents
+T_counts <- df_main %>%                  # tasks per respondent (should be same for all)
+  group_by(`Record ID`) %>%
+  summarize(tasks = n_distinct(Task)) %>%
+  pull(tasks)
+T  <- unique(T_counts)                  # should be a single number
+J  <- 4                                 # items per task (by design)
+K  <- 10                                # total items in the study
+
+cat("Number of respondents (N):", N, "\n")
+cat("Tasks per respondent (T):", T, "\n")
+cat("Items per task (J):", J, "\n")
+cat("Total items in study (K):", K, "\n")
+```
+
+**Data description.** The survey collected responses from `r N` MSBA students. Each respondent completed `r T` tasks, each showing 4 classes, and selected their most and least preferred from each set.
+
+```{r sanity-check}
+# Sanity check: every task should have exactly one +1 (best) and one -1 (worst)
+sanity <- df_main %>%
+  group_by(`Record ID`, Task) %>%
+  summarize(
+    n_best  = sum(Response ==  1),
+    n_worst = sum(Response == -1),
+    n_zero  = sum(Response ==  0),
+    .groups = "drop"
+  )
+
+all_ok <- all(sanity$n_best == 1 & sanity$n_worst == 1 & sanity$n_zero == 2)
+cat("Sanity check passed (every task has exactly 1 best, 1 worst, 2 neutral):", all_ok, "\n")
+cat("Total tasks in analysis:", nrow(sanity), "\n")
+```
+
+```{r exposure-counts}
+# How many times was each item shown?
+exposure <- df_main %>%
+  group_by(Item) %>%
+  summarize(times_shown = n(), .groups = "drop") %>%
+  left_join(labels, by = "Item") %>%
+  select(Item, Short, times_shown)
+
+kable(exposure,
+      col.names = c("Item #", "Class", "Times Shown"),
+      caption = "Exposure counts for each item") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+The exposure counts above confirm the balanced MaxDiff design: each class was shown a roughly equal number of times, so no item has an inherent advantage from appearing more often.
+
+
+## Counts Analysis
+
+The counts analysis is the simplest way to summarize MaxDiff data. For each class $j$, we count:
+
+- How many times it was picked as *best* (out of the times it was shown) → gives $\%\text{best}_j$
+- How many times it was picked as *worst* (out of the times it was shown) → gives $\%\text{worst}_j$
+
+The **counts score** is the difference:
+$$\text{score}_j = \%\text{best}_j - \%\text{worst}_j$$
+
+A score near +1 means the class is almost always preferred when shown; near −1 means it's almost always disliked; near 0 means it's middle-of-the-pack (or polarizing — picked both ways at similar rates).
+
+```{r counts-analysis}
+# Compute counts for each item
+counts <- df_main %>%
+  group_by(Item) %>%
+  summarize(
+    times_shown = n(),
+    times_best  = sum(Response ==  1),
+    times_worst = sum(Response == -1),
+    .groups = "drop"
+  ) %>%
+  mutate(
+    pct_best  = times_best  / times_shown,
+    pct_worst = times_worst / times_shown,
+    score     = pct_best - pct_worst
+  ) %>%
+  left_join(labels, by = "Item") %>%
+  arrange(desc(score)) %>%
+  mutate(rank_counts = row_number())
+
+# Display table
+counts %>%
+  select(Item, Short, times_shown, times_best, times_worst, pct_best, pct_worst, score) %>%
+  mutate(across(c(pct_best, pct_worst, score), ~ round(.x, 3))) %>%
+  kable(
+    col.names = c("Item", "Class", "Shown", "# Best", "# Worst",
+                  "% Best", "% Worst", "Score"),
+    caption = "Counts analysis — ranked from most to least preferred"
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+```{r bootstrap-ci}
+# Bootstrap confidence intervals by resampling respondents
+# (We resample at the respondent level to respect the within-person structure)
+
+respondents <- unique(df_main$`Record ID`)
+n_boot <- 1000
+
+boot_scores <- matrix(NA, nrow = n_boot, ncol = K)
+
+for (b in 1:n_boot) {
+  # Sample respondents with replacement
+  sampled_ids <- sample(respondents, size = N, replace = TRUE)
+
+  # Build a bootstrapped dataset
+  boot_df <- map_dfr(sampled_ids, ~ df_main %>% filter(`Record ID` == .x))
+
+  # Compute counts score for each item
+  boot_counts <- boot_df %>%
+    group_by(Item) %>%
+    summarize(
+      times_shown = n(),
+      times_best  = sum(Response ==  1),
+      times_worst = sum(Response == -1),
+      .groups = "drop"
+    ) %>%
+    mutate(score = (times_best - times_worst) / times_shown) %>%
+    arrange(Item)
+
+  boot_scores[b, ] <- boot_counts$score
+}
+
+# Take 2.5th and 97.5th percentiles for each item
+ci_lower <- apply(boot_scores, 2, quantile, probs = 0.025)
+ci_upper <- apply(boot_scores, 2, quantile, probs = 0.975)
+
+# Add CIs to the counts data frame
+# Items are in order 1..10 in the apply output, so we need to match by item number
+counts_with_ci <- counts %>%
+  mutate(
+    ci_lower = ci_lower[Item],
+    ci_upper = ci_upper[Item]
+  )
+```
+
+```{r counts-plot, fig.width=9, fig.height=5}
+# Horizontal bar chart of counts scores with bootstrap CIs
+counts_with_ci %>%
+  mutate(Short = fct_reorder(Short, score)) %>%
+  ggplot(aes(x = score, y = Short)) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "gray50") +
+  geom_errorbarh(aes(xmin = ci_lower, xmax = ci_upper),
+                 height = 0.3, color = "steelblue", alpha = 0.8) +
+  geom_point(size = 3, color = "steelblue") +
+  labs(
+    title  = "MaxDiff Counts Scores by Class",
+    subtitle = "Error bars = 95% bootstrap confidence intervals (respondent-level resampling)",
+    x      = "Score (% Best − % Worst)",
+    y      = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank())
+```
+
+**Observations.** Marketing Analytics (MGTA 495) and Customer Analytics (MGTA 455) emerge as the most preferred classes — students consistently pick them as best when shown. At the other end, AI Math/Programming (MGTA 403) and Business Intelligence Systems (MGTA 457) score lowest, being picked worst far more often than best. This is perhaps not surprising: the technical/math-heavy foundational courses may feel obligatory rather than exciting, while the application-oriented analytics courses are more appealing to students who've already done the foundational work. The bootstrap CIs are reasonably tight for the extreme items but overlap for the middle-ranked ones, signaling genuine uncertainty about the ordering in the middle of the pack.
+
+
+## From MaxDiff Data to MNL Choices
+
+Before we fit a probabilistic model, we need to understand how MaxDiff survey responses translate into the language of the Multinomial Logit (MNL) model.
+
+In the MNL framework, each item $j$ is assigned a scalar utility parameter $\beta_j$. On a task showing items $\{a, b, c, d\}$, the probability that item $b$ is picked as *best* is the familiar softmax:
+
+$$P(\text{best} = b) = \frac{\exp(\beta_b)}{\exp(\beta_a) + \exp(\beta_b) + \exp(\beta_c) + \exp(\beta_d)}$$
+
+Each task also gives us a *worst* pick. After removing the best-picked item, the respondent selects the worst from the remaining three. The model treats the "worst" pick as a best pick in the *negative* utility space — the item with the lowest utility (most negative) is most likely to be chosen as worst:
+
+$$P(\text{worst} = c \mid \text{best} = b) = \frac{\exp(-\beta_c)}{\exp(-\beta_a) + \exp(-\beta_c) + \exp(-\beta_d)}$$
+
+So each task contributes **two** MNL observations to the likelihood: the best pick from the full set of 4, and the worst pick from the remaining 3. This is the key insight that makes MaxDiff data so information-rich.
+
+**Identifiability note.** The softmax probability is invariant to adding a constant to all $\beta$'s — only differences between utilities are identified. With $K = 10$ items, we can only identify $K - 1 = 9$ parameters. We handle this by fixing $\beta_1 = 0$ (MGTA 403, the AI Math course, serves as the reference) and estimating $\beta_2, \ldots, \beta_{10}$.
+
+```{r reshape-data}
+# Reshape into a convenient list of tasks for the likelihood function.
+# Each element of task_list is a list with:
+#   items: integer vector of the 4 item numbers shown
+#   best:  which item was picked best
+#   worst: which item was picked worst
+
+task_list <- df_main %>%
+  group_by(`Record ID`, Task) %>%
+  summarize(
+    items = list(sort(Item)),
+    best  = Item[Response ==  1],
+    worst = Item[Response == -1],
+    .groups = "drop"
+  ) %>%
+  # Convert to a plain list of lists for easy iteration
+  pmap(function(`Record ID`, Task, items, best, worst) {
+    list(items = items, best = best, worst = worst)
+  })
+
+cat("Number of tasks in likelihood:", length(task_list), "\n")
+cat("(Each task contributes 2 MNL observations: 1 best, 1 worst)\n")
+```
+
+
+## MNL via Maximum Likelihood
+
+The log-likelihood sums contributions from every task. For task $t$ showing items $S_t$, with $j^*_b$ picked best and $j^*_w$ picked worst:
+
+$$\ell(\boldsymbol{\beta}) = \sum_t \left[ \beta_{j^*_b} - \log \sum_{j \in S_t} \exp(\beta_j) \;-\; \beta_{j^*_w} - \log \sum_{j \in S_t \setminus \{j^*_b\}} \exp(-\beta_j) \right]$$
+
+We use the log-sum-exp form directly, which is numerically stable.
+
+```{r log-likelihood}
+# Log-likelihood function
+# beta_free: length-9 vector (beta_2 through beta_10)
+# beta_1 is pinned to 0 inside the function
+
+ll <- function(beta_free, task_list) {
+  # Full utility vector: beta[j] gives the utility of item j (1-indexed)
+  beta <- c(0, beta_free)  # beta[1]=0 is the reference
+
+  total_ll <- 0
+
+  for (task in task_list) {
+    items <- task$items   # integer vector of 4 item numbers
+    best  <- task$best
+    worst <- task$worst
+
+    # Utilities for shown items
+    utils <- beta[items]
+
+    # Log-prob of best pick (softmax over all 4)
+    # We use: beta[best] - log(sum(exp(beta[items])))
+    ll_best <- beta[best] - log(sum(exp(utils)))
+
+    # Log-prob of worst pick (softmax over remaining 3, with flipped utilities)
+    remaining       <- items[items != best]
+    utils_remaining <- beta[remaining]
+    ll_worst <- -beta[worst] - log(sum(exp(-utils_remaining)))
+
+    total_ll <- total_ll + ll_best + ll_worst
+  }
+
+  return(total_ll)
+}
+
+# Quick test: at beta = 0, each item has equal probability
+# Best: prob = 1/4, log = -log(4)
+# Worst: prob = 1/3, log = -log(3)
+test_val <- ll(rep(0, 9), task_list[1:1])
+cat("Log-likelihood at zeros for 1 task:", round(test_val, 4),
+    "(expected ≈", round(-log(4) - log(3), 4), ")\n")
+```
+
+```{r mle}
+# Maximize the log-likelihood using BFGS
+# control(fnscale = -1) turns maximization into minimization
+out <- optim(
+  par     = rep(0, 9),
+  fn      = ll,
+  task_list = task_list,
+  method  = "BFGS",
+  hessian = TRUE,
+  control = list(fnscale = -1)
+)
+
+cat("Convergence code (0 = success):", out$convergence, "\n")
+cat("Final log-likelihood:", round(out$value, 2), "\n")
+
+# Estimated betas (full 10-vector, with beta_1 = 0)
+beta_hat <- c(0, out$par)
+names(beta_hat) <- paste0("beta_", 1:10)
+
+# Standard errors from inverse of negative Hessian
+# The Hessian returned by optim is for the 9 free parameters
+se_free <- sqrt(diag(solve(-out$hessian)))
+se_all  <- c(NA, se_free)   # beta_1 is fixed, no SE
+
+# Shares of preference: softmax of the beta_hat's
+shares <- exp(beta_hat) / sum(exp(beta_hat))
+
+# Compile MLE results table
+mle_results <- labels %>%
+  mutate(
+    beta_hat = beta_hat,
+    se       = se_all,
+    share    = shares
+  ) %>%
+  arrange(desc(share)) %>%
+  mutate(rank_mle = row_number())
+
+mle_results %>%
+  select(Item, Short, beta_hat, se, share) %>%
+  mutate(across(c(beta_hat, se, share), ~ round(.x, 4))) %>%
+  kable(
+    col.names = c("Item", "Class", "β̂", "SE(β̂)", "Share of Preference"),
+    caption   = "MLE results — ranked by share of preference"
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE) %>%
+  footnote(general = "β₁ (AI Math/Prog) is fixed to 0 as the reference category; its SE is not estimated.")
+```
+
+```{r mle-plot, fig.width=9, fig.height=5}
+# Plot shares of preference from MLE
+mle_results %>%
+  mutate(Short = fct_reorder(Short, share)) %>%
+  ggplot(aes(x = share, y = Short)) +
+  geom_col(fill = "darkorange", alpha = 0.8) +
+  labs(
+    title    = "MNL Shares of Preference (MLE)",
+    subtitle = "If all 10 classes shown simultaneously, fraction expected to be chosen best",
+    x        = "Share of Preference",
+    y        = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank())
+```
+
+```{r mle-vs-counts}
+# Compare MLE ranking to counts ranking
+comparison_mle <- mle_results %>%
+  select(Item, Short, rank_mle, share) %>%
+  left_join(counts %>% select(Item, rank_counts, score), by = "Item") %>%
+  arrange(rank_mle)
+
+comparison_mle %>%
+  mutate(across(c(share, score), ~ round(.x, 3))) %>%
+  kable(
+    col.names = c("Item", "Class", "MLE Rank", "MLE Share", "Counts Rank", "Counts Score"),
+    caption   = "MLE vs. Counts ranking comparison"
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+**MLE vs. Counts comparison.** The two methods largely agree at the extremes — the top-ranked and bottom-ranked classes are the same. In the middle of the distribution, however, the rankings sometimes differ by a position or two. This happens because the counts analysis treats all "shown-but-not-picked" outcomes identically, while the MNL model extracts information from *which other items were on the screen*. Being shown alongside universally-loved classes and not being picked is more informative than being shown alongside universally-disliked classes and not being picked. The MNL model accounts for this; the simple counts analysis does not.
+
+
+## MNL via Bayesian Estimation
+
+Now we fit the exact same model using Bayesian inference via the **Metropolis-Hastings** algorithm. Instead of a single point estimate $\hat{\boldsymbol{\beta}}$, we obtain a full *posterior distribution* over $\boldsymbol{\beta}$.
+
+By Bayes' rule, the posterior is proportional to the likelihood times the prior:
+
+$$\pi(\boldsymbol{\beta} \mid \boldsymbol{y}) \propto L(\boldsymbol{\beta}) \cdot \pi(\boldsymbol{\beta})$$
+
+We use a weakly informative Normal prior: $\beta_j \sim N(0, 10)$ for each free parameter (SD ≈ 3.16). This is wide enough to not pull estimates away from the data-driven values, but tighter than a flat improper prior.
+
+```{r log-posterior}
+# Log posterior = log-likelihood + log-prior
+log_post <- function(beta_free, task_list) {
+  ll(beta_free, task_list) +
+    sum(dnorm(beta_free, mean = 0, sd = sqrt(10), log = TRUE))
+}
+```
+
+```{r mh-sampler}
+# Random-walk Metropolis-Hastings sampler
+# beta0:     starting values (length-9 vector)
+# n_iter:    number of iterations
+# step:      standard deviation of the random-walk proposal
+# task_list: the data
+
+mh <- function(beta0, n_iter, step, task_list) {
+  K      <- length(beta0)
+  draws  <- matrix(NA, nrow = n_iter, ncol = K)
+  beta   <- beta0
+  lp     <- log_post(beta, task_list)
+  accept <- 0
+
+  for (t in 1:n_iter) {
+    # Propose a new point by adding Gaussian noise
+    beta_star <- beta + rnorm(K, mean = 0, sd = step)
+    lp_star   <- log_post(beta_star, task_list)
+
+    # Accept or reject using the Metropolis criterion
+    if (log(runif(1)) < lp_star - lp) {
+      beta   <- beta_star
+      lp     <- lp_star
+      accept <- accept + 1
+    }
+
+    draws[t, ] <- beta
+  }
+
+  list(draws = draws, accept_rate = accept / n_iter)
+}
+```
+
+```{r tune-step}
+# Tune the step size to achieve ~25-40% acceptance rate
+# Start from the MLE estimates (warm start speeds up mixing)
+beta0 <- out$par
+
+# Try a few step sizes on a short pilot run
+pilot_results <- tibble(
+  step         = c(0.05, 0.1, 0.2, 0.3, 0.5),
+  accept_rate  = NA_real_
+)
+
+for (i in seq_len(nrow(pilot_results))) {
+  pilot <- mh(beta0, n_iter = 2000, step = pilot_results$step[i], task_list = task_list)
+  pilot_results$accept_rate[i] <- pilot$accept_rate
+}
+
+kable(pilot_results %>% mutate(accept_rate = round(accept_rate, 3)),
+      col.names = c("Step Size", "Acceptance Rate"),
+      caption   = "Pilot tuning runs (2,000 iterations each)") %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+
+# Pick the step closest to target 30%
+best_step <- pilot_results %>%
+  mutate(dist = abs(accept_rate - 0.30)) %>%
+  slice_min(dist, n = 1) %>%
+  pull(step)
+
+cat("\nSelected step size:", best_step, "\n")
+```
+
+```{r run-mcmc}
+# Run the full chain: 25,000 iterations, discard first 25% as burn-in
+n_iter  <- 25000
+burn_in <- round(0.25 * n_iter)  # 6,250 draws discarded
+
+chain <- mh(beta0, n_iter = n_iter, step = best_step, task_list = task_list)
+
+cat("Final acceptance rate:", round(chain$accept_rate, 3), "\n")
+cat("Burn-in discarded:", burn_in, "draws\n")
+cat("Post-burn-in draws retained:", n_iter - burn_in, "\n")
+
+# Keep only post-burn-in draws
+draws <- chain$draws[(burn_in + 1):n_iter, ]
+colnames(draws) <- paste0("beta_", 2:10)
+```
+
+```{r trace-plots, fig.width=10, fig.height=7}
+# Trace plots for 3 selected parameters
+# Choose one high-utility, one mid-utility, one low-utility parameter
+par(mfrow = c(3, 1), mar = c(3, 4, 2, 1))
+
+# Show a thinned version for readability (every 5th draw)
+thin_idx <- seq(1, nrow(draws), by = 5)
+
+plot(thin_idx, draws[thin_idx, "beta_9"], type = "l", col = "steelblue",
+     main = "Trace: β₉ (Marketing Analytics — highest utility)",
+     xlab = "Post-burn-in iteration (thinned)", ylab = "β₉")
+abline(h = out$par[8], col = "red", lty = 2)
+legend("topright", c("MCMC draw", "MLE estimate"), col = c("steelblue", "red"),
+       lty = c(1, 2), bty = "n", cex = 0.9)
+
+plot(thin_idx, draws[thin_idx, "beta_5"], type = "l", col = "darkorange",
+     main = "Trace: β₅ (Business Analytics — mid utility)",
+     xlab = "Post-burn-in iteration (thinned)", ylab = "β₅")
+abline(h = out$par[4], col = "red", lty = 2)
+
+plot(thin_idx, draws[thin_idx, "beta_10"], type = "l", col = "darkgreen",
+     main = "Trace: β₁₀ (Biz Intelligence Systems — lowest utility)",
+     xlab = "Post-burn-in iteration (thinned)", ylab = "β₁₀")
+abline(h = out$par[9], col = "red", lty = 2)
+par(mfrow = c(1, 1))
+```
+
+The trace plots look like "fuzzy caterpillars" — the chain mixes well, with no visible drift or stuck regions. The MCMC estimates (blue line) hover around the MLE estimates (red dashed line), confirming the sampler has converged.
+
+```{r bayesian-results}
+# Posterior summaries
+# Add beta_1 = 0 as a fixed column
+draws_full <- cbind(beta_1 = 0, draws)
+
+# Posterior means
+post_means_free <- colMeans(draws)
+post_means_full <- c(0, post_means_free)
+
+# 95% credible intervals
+ci_lo_free <- apply(draws, 2, quantile, probs = 0.025)
+ci_hi_free <- apply(draws, 2, quantile, probs = 0.975)
+
+ci_lo_full <- c(NA, ci_lo_free)
+ci_hi_full <- c(NA, ci_hi_free)
+
+# Posterior shares of preference:
+# For each MCMC draw, compute softmax over all 10 betas, then average
+# This correctly propagates uncertainty through the nonlinear transformation
+post_shares_matrix <- apply(draws_full, 1, function(b) {
+  exp(b) / sum(exp(b))
+})
+# post_shares_matrix is 10 x n_draws; take row means
+post_mean_shares <- rowMeans(post_shares_matrix)
+
+# Credible intervals on shares
+share_ci_lo <- apply(post_shares_matrix, 1, quantile, probs = 0.025)
+share_ci_hi <- apply(post_shares_matrix, 1, quantile, probs = 0.975)
+
+# Compile Bayesian results table
+bayes_results <- labels %>%
+  mutate(
+    post_mean_beta  = post_means_full,
+    ci_lo_beta      = ci_lo_full,
+    ci_hi_beta      = ci_hi_full,
+    post_mean_share = post_mean_shares,
+    share_ci_lo     = share_ci_lo,
+    share_ci_hi     = share_ci_hi
+  ) %>%
+  arrange(desc(post_mean_share)) %>%
+  mutate(rank_bayes = row_number())
+
+bayes_results %>%
+  mutate(
+    CI_beta  = ifelse(is.na(ci_lo_beta), "—",
+                      paste0("[", round(ci_lo_beta, 2), ", ", round(ci_hi_beta, 2), "]")),
+    CI_share = paste0("[", round(share_ci_lo, 3), ", ", round(share_ci_hi, 3), "]")
+  ) %>%
+  select(Item, Short, post_mean_beta, CI_beta, post_mean_share, CI_share) %>%
+  mutate(post_mean_beta  = round(post_mean_beta, 3),
+         post_mean_share = round(post_mean_share, 4)) %>%
+  kable(
+    col.names = c("Item", "Class", "Post. Mean β", "95% CI (β)",
+                  "Post. Mean Share", "95% CI (Share)"),
+    caption   = "Bayesian MNL results — ranked by posterior mean share"
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+```{r bayes-plot, fig.width=9, fig.height=5}
+# Plot posterior mean shares with 95% credible intervals
+bayes_results %>%
+  mutate(Short = fct_reorder(Short, post_mean_share)) %>%
+  ggplot(aes(x = post_mean_share, y = Short)) +
+  geom_errorbarh(aes(xmin = share_ci_lo, xmax = share_ci_hi),
+                 height = 0.3, color = "purple", alpha = 0.8) +
+  geom_point(size = 3, color = "purple") +
+  labs(
+    title    = "MNL Shares of Preference (Bayesian)",
+    subtitle = "Error bars = 95% posterior credible intervals",
+    x        = "Posterior Mean Share of Preference",
+    y        = NULL
+  ) +
+  theme_minimal(base_size = 13) +
+  theme(panel.grid.major.y = element_blank())
+```
+
+```{r bayes-vs-mle}
+# Compare Bayesian posterior means to MLE point estimates
+comp_bayes_mle <- mle_results %>%
+  select(Item, Short, beta_hat, se, share) %>%
+  left_join(
+    bayes_results %>% select(Item, post_mean_beta, post_mean_share),
+    by = "Item"
+  ) %>%
+  mutate(
+    beta_diff  = abs(beta_hat - post_mean_beta),
+    share_diff = abs(share - post_mean_share)
+  ) %>%
+  arrange(desc(abs(beta_hat)))
+
+cat("Max absolute difference in beta estimates:", round(max(comp_bayes_mle$beta_diff, na.rm=TRUE), 4), "\n")
+cat("Max absolute difference in shares:", round(max(comp_bayes_mle$share_diff, na.rm=TRUE), 4), "\n")
+```
+
+**Bayesian vs. MLE.** The posterior means are very close to the MLE point estimates — the differences are well within a standard error. This is expected: with a large dataset and a weakly informative prior, the likelihood dominates the prior and Bayesian and frequentist estimates converge. The key advantage of Bayes shows up in the *credible intervals on shares*. Because we push each MCMC draw through the softmax and take quantiles, we get properly calibrated uncertainty on the derived shares without needing the delta method. The MLE standard errors are on the log-utility scale; converting them to share uncertainty requires extra work. Bayes does this for free.
+
+
+## Comparing the Three Methods
+
+```{r comparison-table}
+# Combined comparison table, sorted by MLE rank
+comparison_full <- mle_results %>%
+  select(Item, Short, rank_mle, share) %>%
+  rename(mle_share = share) %>%
+  left_join(
+    counts_with_ci %>% select(Item, score, rank_counts),
+    by = "Item"
+  ) %>%
+  left_join(
+    bayes_results %>% select(Item, post_mean_share, rank_bayes),
+    by = "Item"
+  ) %>%
+  arrange(rank_mle) %>%
+  mutate(across(c(score, mle_share, post_mean_share), ~ round(.x, 3)))
+
+comparison_full %>%
+  select(Item, Short, score, rank_counts, mle_share, rank_mle, post_mean_share, rank_bayes) %>%
+  kable(
+    col.names = c("Item", "Class",
+                  "Counts Score", "Counts Rank",
+                  "MLE Share", "MLE Rank",
+                  "Bayes Share", "Bayes Rank"),
+    caption = "Three-method comparison (sorted by MLE rank)"
+  ) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"), full_width = FALSE)
+```
+
+```{r three-panel-plot, fig.width=14, fig.height=5}
+# Three side-by-side horizontal bar charts with consistent color coding
+library(patchwork)
+
+class_colors <- scales::hue_pal()(K)
+names(class_colors) <- labels$Short
+
+p_counts <- counts_with_ci %>%
+  mutate(Short = fct_reorder(Short, score)) %>%
+  ggplot(aes(x = score, y = Short, fill = Short)) +
+  geom_col(alpha = 0.85, show.legend = FALSE) +
+  geom_errorbarh(aes(xmin = ci_lower, xmax = ci_upper),
+                 height = 0.3, color = "gray30") +
+  scale_fill_manual(values = class_colors) +
+  labs(title = "Counts", x = "Score (% Best − % Worst)", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.major.y = element_blank())
+
+p_mle <- mle_results %>%
+  mutate(Short = fct_reorder(Short, share)) %>%
+  ggplot(aes(x = share, y = Short, fill = Short)) +
+  geom_col(alpha = 0.85, show.legend = FALSE) +
+  scale_fill_manual(values = class_colors) +
+  labs(title = "MLE", x = "Share of Preference", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.major.y = element_blank())
+
+p_bayes <- bayes_results %>%
+  mutate(Short = fct_reorder(Short, post_mean_share)) %>%
+  ggplot(aes(x = post_mean_share, y = Short, fill = Short)) +
+  geom_col(alpha = 0.85, show.legend = FALSE) +
+  geom_errorbarh(aes(xmin = share_ci_lo, xmax = share_ci_hi),
+                 height = 0.3, color = "gray30") +
+  scale_fill_manual(values = class_colors) +
+  labs(title = "Bayesian", x = "Posterior Mean Share", y = NULL) +
+  theme_minimal(base_size = 11) +
+  theme(panel.grid.major.y = element_blank())
+
+p_counts + p_mle + p_bayes +
+  plot_annotation(
+    title    = "Three-Method Comparison of MSBA Class Preferences",
+    subtitle = "Color-coding is consistent across panels; bars within each panel sorted by that method's score",
+    theme    = theme(plot.title = element_text(size = 14, face = "bold"))
+  )
+```
+
+**Method comparison discussion.** All three methods tell a broadly consistent story: Marketing Analytics and Customer Analytics sit clearly at the top, while AI Math/Programming and Business Intelligence Systems sit clearly at the bottom. Agreement is tightest at the extremes, which makes sense — items with very high or very low utility generate consistent best/worst picks, and all three methods pick this up reliably.
+
+Where the methods diverge is in the middle tier. The counts analysis can be thrown off by small-sample noise (some middle-ranked items may have happened to appear with especially strong or weak competitors), while the MNL model adjusts for the composition of each choice set. A class shown repeatedly against Marketing Analytics will look weaker in the counts than it would appear against weaker competition; the MNL model corrects for this because it infers utility directly from the full competitive context. This is the primary substantive advantage of MNL over counts.
+
+Bayesian adds over MLE primarily in terms of *uncertainty quantification*. The credible intervals on shares are obtained "for free" by pushing every MCMC draw through the softmax — no delta method needed. For practical decisions (e.g., "are students significantly more excited about Marketing Analytics than Customer Analytics?"), the Bayesian posterior naturally answers that question. And if we wanted to extend the model hierarchically to estimate individual-level preferences, the Bayesian machinery scales naturally to that setting while MLE becomes much more complex.
+
+
+## Discussion
+
+The MaxDiff survey reveals that MSBA students have clear and consistent preferences across the curriculum. Application-oriented analytics courses — particularly Marketing Analytics and Customer Analytics — are strongly preferred, while foundational technical courses like AI Math/Programming and Business Intelligence Systems are least preferred. This is a reasonable pattern: students who've already decided to pursue an analytics degree may find applied courses more motivating and immediately relevant to their career goals, even if the foundational courses are equally (or more) important to their long-run skill development. There's also a possible self-selection story: students who find the technical prerequisites easy may undervalue them, while students who struggle may rate them poorly for a different reason.
+
+On the methodological side, the three approaches occupy different points on the simplicity-rigor spectrum:
+
+- **Counts analysis** is the right tool for a quick executive dashboard. It's trivially explainable to any stakeholder, requires no modeling assumptions, and produces a defensible ranking in minutes. Its weakness is that it ignores the competitive context of each screen.
+
+- **MNL via MLE** is the workhorse for rigorous reporting: it gives point estimates with classical standard errors, accounts for choice-set composition, and links directly to a well-understood probabilistic model. Use it when you need a single defensible number with a confidence interval.
+
+- **Bayesian MNL** shines when you need uncertainty on *derived quantities* (shares, "what if we changed the choice set?" simulations, comparisons between items), or when you want to extend the model hierarchically to estimate individual-level preferences. The MCMC draws give you a full distribution over anything you can compute from the parameters.
+
+**Caveats.** This is a self-selected sample of MSBA students at a single program — preferences may differ at other schools with different curricular emphases or student backgrounds. Prior coursework, current standing in the program (first vs. second year), and the order in which students encounter courses on the survey screen could all influence responses. A richer survey might add respondent characteristics as covariates and fit a hierarchical model that estimates individual preference heterogeneity.
+
+**Next steps.** If I had more time, I'd fit a hierarchical (mixed-effects) MNL to estimate individual-level utilities — an extension that drops naturally out of the Bayesian setup by adding a normal distribution on the person-level betas. I'd also explore whether preferences vary systematically by academic background (e.g., quantitative vs. non-quantitative undergraduate degree) using a covariate-augmented MNL.

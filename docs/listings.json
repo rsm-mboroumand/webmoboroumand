@@ -2,6 +2,7 @@
   {
     "listing": "/posts/index.html",
     "items": [
+      "/posts/maxdiff-mnl-analysis/index.html",
       "/posts/blueprinty-poisson/index.html",
       "/posts/causal_academic/index.html",
       "/posts/ab-testing-cta/index.html"
