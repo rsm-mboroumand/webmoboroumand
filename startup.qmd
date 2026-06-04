@@ -11,59 +11,41 @@ title: "Startup Ideas"
   <div class="startup-list">
 
     <!-- ============================================================
-         STARTUP IDEA CARD — copy this block for each idea
+         DIRECTREACH
          ============================================================ -->
     <div class="startup-card">
       <div class="startup-card-left">
-        <div class="startup-emoji">[Emoji]</div>
-        <div class="startup-stage exploring">Exploring</div>
-        <!-- Stage options: exploring | validating | building | launched | paused -->
-      </div>
-      <div class="startup-card-right">
-        <h3 class="startup-title">[Idea / Company Name]</h3>
-        <p class="startup-tagline">[One-liner: "X for Y" or "We help Z do W"]</p>
-        <div class="startup-section">
-          <strong>Problem</strong>
-          <p>[What problem does this solve? Who feels this pain?]</p>
-        </div>
-        <div class="startup-section">
-          <strong>Solution</strong>
-          <p>[How do you solve it? What's the core insight?]</p>
-        </div>
-        <div class="startup-section">
-          <strong>Why now?</strong>
-          <p>[What has changed in the market or technology that makes this the right time?]</p>
-        </div>
-        <div class="startup-tags">
-          <span class="tag">[Industry]</span>
-          <span class="tag">[Technology]</span>
-          <span class="tag">[Market]</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- ============================================================
-         STARTUP IDEA 2
-         ============================================================ -->
-    <div class="startup-card">
-      <div class="startup-card-left">
-        <div class="startup-emoji">[Emoji]</div>
+        <div class="startup-emoji">🎯</div>
         <div class="startup-stage validating">Validating</div>
       </div>
       <div class="startup-card-right">
-        <h3 class="startup-title">[Idea / Company Name]</h3>
-        <p class="startup-tagline">[One-liner]</p>
+        <h3 class="startup-title">DirectReach</h3>
+        <p class="startup-tagline">Cut the middleman. Grow the business. — A flat-fee platform that sends customers directly to small businesses.</p>
         <div class="startup-section">
           <strong>Problem</strong>
-          <p>[Problem description]</p>
+          <p>Every small business needs marketing, but the biggest platforms (Groupon, Turo, Angi, DoorDash) take 25–50% of revenue per transaction just for lead generation. The platform grows rich; the business owner scrapes by. With 33M+ small businesses in the US alone paying billions in commissions, the pain is massive and universal.</p>
         </div>
         <div class="startup-section">
           <strong>Solution</strong>
-          <p>[Solution description]</p>
+          <p>DirectReach gives each business one clean listing page showing their top 5 products/services with real prices, a booking link, phone number, website, and aggregated reviews from Google & Yelp — all for a flat monthly subscription ($0–$99/mo). No per-transaction cut. Customers connect directly with the business. 100% of revenue stays with the owner.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Why now?</strong>
+          <p>Platform fatigue is real — small business owners are increasingly vocal about commission-based models eating their margins. The rise of "support local" sentiment, combined with growing distrust of Yelp and Groupon's opaque algorithms, creates an opening for a transparency-first alternative. The subscription SaaS model is proven; applying it to local discovery is the insight.</p>
+        </div>
+        <div class="startup-section">
+          <strong>Market</strong>
+          <p>$25B+ total addressable market in platform commissions (US). Primary targets: restaurants, home services, auto rentals, beauty & wellness, and event venues — any SMB currently paying $500+/month to commission-based platforms.</p>
         </div>
         <div class="startup-tags">
-          <span class="tag">[Industry]</span>
-          <span class="tag">[Technology]</span>
+          <span class="tag">MarTech</span>
+          <span class="tag">Local Commerce</span>
+          <span class="tag">SaaS</span>
+          <span class="tag">Small Business</span>
+          <span class="tag">Lead Generation</span>
+        </div>
+        <div style="margin-top: 1rem;">
+          <a href="directreach_pitch.html" class="btn btn-outline-primary btn-sm" target="_blank">📊 View Pitch Deck</a>
         </div>
       </div>
     </div>
