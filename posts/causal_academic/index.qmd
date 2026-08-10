@@ -179,6 +179,13 @@ tbl2a['p-value (Gave)']   = [pvals[k][0] for k in groups]
 tbl2a['p-value (Amount)'] = [pvals[k][1] for k in groups]
 
 tbl2a.style \
+    .format({
+        'Share Giving (%)': '{:.2f}',
+        'Avg Gift | Gave ($)': '{:.2f}',
+        'Avg Gift / Solicitation ($)': '{:.3f}',
+        'p-value (Gave)': lambda x: x if x == '—' else f'{float(x):.3f}',
+        'p-value (Amount)': lambda x: x if x == '—' else f'{float(x):.3f}',
+    }) \
     .set_properties(**{'text-align': 'center'}) \
     .set_table_styles([{'selector': 'th', 'props': [('text-align', 'center')]}])
 ```
